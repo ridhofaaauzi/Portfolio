@@ -5,8 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import Experience from "./components/Experience";
+import Certificate from "./components/Certificate";
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
         <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/certificate" element={<Certificate />} />
         <Route path="/experience" element={<Experience />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
     </div>
   );

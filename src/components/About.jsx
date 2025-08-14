@@ -14,6 +14,7 @@ import {
   SiTailwindcss,
   SiExpress,
   SiJquery,
+  SiMysql,
 } from "react-icons/si";
 import Profile from "../assets/profile.webp";
 
@@ -25,11 +26,11 @@ const About = () => {
     { icon: <FaReact />, label: "React", color: "text-cyan-400" },
     { icon: <SiTailwindcss />, label: "Tailwind", color: "text-sky-400" },
     { icon: <FaBootstrap />, label: "Bootstrap", color: "text-purple-500" },
-    { icon: <SiJquery />, label: "jQuery", color: "text-blue-400" },
     { icon: <FaNodeJs />, label: "Node JS", color: "text-green-500" },
     { icon: <SiExpress />, label: "Express", color: "text-gray-300" },
     { icon: <FaPhp />, label: "PHP", color: "text-indigo-400" },
     { icon: <FaLaravel />, label: "Laravel", color: "text-red-500" },
+    { icon: <SiMysql />, label: "MySQL", color: "text-blue-400" },
   ];
 
   return (
@@ -70,7 +71,6 @@ const About = () => {
                   <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-blue-800 text-white text-2xl shadow-lg hover:scale-110 transition-transform">
                     <span className={skill.color}>{skill.icon}</span>
                   </div>
-
                   <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-800 text-white text-sm rounded px-2 py-1 pointer-events-none transition-opacity whitespace-nowrap">
                     {skill.label}
                   </div>

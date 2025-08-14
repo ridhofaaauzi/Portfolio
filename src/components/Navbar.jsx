@@ -20,8 +20,8 @@ const Navbar = () => {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/projects">Project</Link>
+          <Link to="/certificate">Certificate</Link>
           <Link to="/experience">Experience</Link>
-          {/* <Link to="/contact">Contact</Link> */}
         </div>
         <div className="md:hidden">
           <button
@@ -45,6 +45,9 @@ const Navbar = () => {
           </Link>
           <Link to="/projects" className="block py-2 text-white">
             Project
+          </Link>
+          <Link to="/certificate" className="block py-2 text-white">
+            Certificate
           </Link>
           <Link to="/experience" className="block py-2 text-white">
             Experience
