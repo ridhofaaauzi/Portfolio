@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
-      company: "Celerates",
-      date: "May 2024 - Jun 2024",
-      desc: "Facilitated and evaluated participant learning by overseeing synchronous sessions, guiding self-directed study, addressing inquiries, validating activity logs, and delivering actionable feedback to drive performance improvement and ensure successful program outcomes.",
-      tags: ["Co-Mentor", "Part Time"],
-    },
-    {
       company: "PT. Amanah Karya Indonesia",
       date: "Aug 2024 - Mar 2025",
       desc: "Contributed to the development of two major products: SIHRIS (Human Resource Information System) and Berbagilink.",
       tags: ["Web Development", "Intership"],
+    },
+    {
+      company: "Celerates",
+      date: "May 2024 - Jun 2024",
+      desc: "Facilitated and evaluated participant learning by overseeing synchronous sessions, guiding self-directed study, addressing inquiries, validating activity logs, and delivering actionable feedback to drive performance improvement and ensure successful program outcomes.",
+      tags: ["Co-Mentor", "Part Time"],
     },
   ];
 
