@@ -1,0 +1,371 @@
+.hero {
+  position: relative;
+  min-height: max(100svh, 720px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- Shared layout (surface + blueprint must stay identical) ---------- */
+
+.content {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 1fr auto auto;
+  column-gap: var(--gutter);
+  min-height: max(100svh, 720px);
+  padding: calc(var(--nav-height) + var(--space-6)) var(--page-margin) var(--space-7);
+}
+
+.name {
+  grid-column: 1 / span 9;
+  grid-row: 1;
+  align-self: end;
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  font-stretch: 75%;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.line + .line {
+  padding-left: 1.1em;
+}
+
+.portrait {
+  grid-column: 10 / span 3;
+  grid-row: 1;
+  align-self: end;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.6vw;
+  border-radius: var(--radius-media);
+  background: #dcded8;
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.portraitSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #c7cac3;
+}
+
+.portraitCaption {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--c-graphite);
+}
+
+.headline {
+  grid-column: 1 / span 6;
+  grid-row: 2;
+  max-width: 24ch;
+  margin-top: var(--space-7);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.aside {
+  grid-column: 7 / span 3;
+  grid-row: 2 / span 2;
+  margin-top: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.role {
+  font-weight: 600;
+}
+
+.intro {
+  max-width: 38ch;
+  color: var(--c-graphite);
+}
+
+.ctas {
+  grid-column: 1 / span 6;
+  grid-row: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  align-self: start;
+}
+
+/* ---------- Blueprint layer ---------- */
+
+.blueprint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--c-blueprint);
+  color: var(--c-blueprint-line);
+  pointer-events: none;
+  clip-path: circle(0 at 50% 50%);
+}
+
+.grid {
+  position: absolute;
+  inset: 0 var(--page-margin);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.grid span {
+  border-inline: 1px solid rgb(185 197 255 / 0.16);
+  background: rgb(185 197 255 / 0.05);
+}
+
+.content[data-variant='blueprint'] [data-tag] {
+  position: relative;
+  outline: 1px dashed rgb(185 197 255 / 0.7);
+  outline-offset: 4px;
+}
+
+.content[data-variant='blueprint'] [data-tag]::before {
+  content: '<' attr(data-tag) '>';
+  position: absolute;
+  left: -4px;
+  bottom: calc(100% + 6px);
+  padding: 1px 6px;
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-transform: none;
+  white-space: nowrap;
+  background: var(--c-blueprint-line);
+  color: var(--c-blueprint);
+  -webkit-text-stroke: 0;
+}
+
+.content[data-variant='blueprint'] [data-spec]::after {
+  content: attr(data-spec);
+  position: absolute;
+  right: -4px;
+  bottom: calc(100% + 8px);
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-transform: none;
+  white-space: nowrap;
+  color: var(--c-blueprint-line);
+  -webkit-text-stroke: 0;
+}
+
+.content[data-variant='blueprint'] .name {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--c-blueprint-line);
+}
+
+.content[data-variant='blueprint'] .portrait {
+  background: transparent;
+  border: 1px solid var(--c-blueprint-line);
+}
+
+.content[data-variant='blueprint'] .portraitSvg {
+  fill: none;
+  stroke: rgb(185 197 255 / 0.6);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.content[data-variant='blueprint'] .portraitSvg line {
+  vector-effect: non-scaling-stroke;
+}
+
+.content[data-variant='blueprint'] .intro,
+.content[data-variant='blueprint'] .role {
+  color: var(--c-blueprint-line);
+}
+
+.content[data-variant='blueprint'] .ctas a {
+  background: transparent;
+  color: var(--c-blueprint-line);
+  border: 1px dashed var(--c-blueprint-line);
+}
+
+/* ---------- Inspect toggle ---------- */
+
+.inspect {
+  position: absolute;
+  z-index: 2;
+  right: var(--page-margin);
+  bottom: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.inspectButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--c-ink);
+  background: var(--c-paper);
+  font-size: var(--fs-small);
+  font-weight: 550;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.inspectButton:active {
+  transform: scale(0.97);
+}
+
+.inspectButton[aria-pressed='true'] {
+  background: var(--c-blueprint-line);
+  border-color: var(--c-blueprint-line);
+  color: var(--c-blueprint);
+}
+
+.inspectButton:focus-visible {
+  outline-color: var(--c-ink);
+}
+
+.hero[data-inspecting] .inspectButton:focus-visible {
+  outline-color: var(--c-blueprint-line);
+}
+
+.inspectHint {
+  font-size: var(--fs-small);
+  color: var(--c-graphite);
+}
+
+@media (hover: hover) {
+  .inspectButton:hover {
+    background: var(--c-ink);
+    color: var(--c-paper);
+  }
+
+  .inspectButton[aria-pressed='true']:hover {
+    background: var(--c-paper);
+    border-color: var(--c-paper);
+    color: var(--c-blueprint);
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 1023px) {
+  .name {
+    grid-column: 1 / -1;
+    font-size: clamp(4.5rem, 19vw, 11rem);
+  }
+
+  .portrait {
+    grid-column: 9 / -1;
+    grid-row: 2;
+    align-self: start;
+    margin: var(--space-7) 0 0;
+  }
+
+  .headline {
+    grid-column: 1 / span 8;
+  }
+
+  .aside {
+    grid-column: 1 / span 8;
+    grid-row: 3;
+    margin-top: var(--space-5);
+  }
+
+  .ctas {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
+  .content {
+    grid-template-rows: 1fr auto auto auto;
+    padding-bottom: calc(var(--space-9) + var(--space-5));
+  }
+
+  .inspect {
+    left: var(--page-margin);
+    right: auto;
+    align-items: flex-start;
+    bottom: var(--space-6);
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 639px) {
+  .content {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .grid span:nth-child(n + 7) {
+    display: none;
+  }
+
+  .name {
+    font-size: 30vw;
+    line-height: 0.84;
+  }
+
+  .line + .line {
+    padding-left: 0.6em;
+  }
+
+  .headline {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: var(--space-6);
+  }
+
+  .portrait {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    align-self: start;
+    margin: var(--space-6) 0 0;
+  }
+
+  .aside {
+    grid-column: 4 / -1;
+    grid-row: 3;
+    margin-top: var(--space-6);
+  }
+
+  .intro {
+    font-size: var(--fs-small);
+  }
+
+  .ctas {
+    grid-row: 4;
+  }
+}

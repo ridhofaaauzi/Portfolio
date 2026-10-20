@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ridho Fauzi Grafika — Fullstack Web Developer</title>
+    <meta name="description" content="Portfolio of Ridho Fauzi Grafika, a fullstack web developer from Depok building HR and ERP systems." />
+    <meta name="theme-color" content="#f2f3f0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ridho Fauzi Grafika — Fullstack Web Developer" />
+    <meta property="og:description" content="Portfolio of Ridho Fauzi Grafika, a fullstack web developer from Depok building HR and ERP systems." />
+    <!-- Intro loader: inline so it covers the page from the first paint, before JS loads.
+         Animated by src/intro/intro.js. -->
+    <style>
+      #intro {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        overflow: hidden;
+        background: #1b1d24;
+        /* Failsafe: never block the page if the script doesn't run */
+        animation: intro-failsafe 0s 6s forwards;
+      }
+      #intro .intro-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        margin-left: -1px;
+        background: #2340d0;
+        transform: scaleY(0);
+      }
+      #intro .intro-half {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50.5%;
+        background: #2340d0;
+        transform: scaleX(0);
+      }
+      #intro .intro-half-left {
+        left: 0;
+        transform-origin: right center;
+      }
+      #intro .intro-half-right {
+        right: 0;
+        transform-origin: left center;
+      }
+      @keyframes intro-failsafe {
+        to {
+          visibility: hidden;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #intro {
+          display: none;
+        }
+      }
+    </style>
+    <noscript><style>#intro { display: none; }</style></noscript>
+  </head>
+  <body>
+    <div id="intro" aria-hidden="true">
+      <div class="intro-half intro-half-left"></div>
+      <div class="intro-half intro-half-right"></div>
+      <div class="intro-line"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

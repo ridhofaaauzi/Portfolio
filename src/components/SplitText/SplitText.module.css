@@ -1,0 +1,11 @@
+.line {
+  display: block;
+  white-space: nowrap;
+  overflow: clip;
+  overflow-clip-margin: 0.04em;
+  padding-bottom: 0.02em;
+}
+
+.char {
+  display: inline-block;
+}

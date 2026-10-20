@@ -1,0 +1,120 @@
+:root {
+  /* Color */
+  --c-paper: #f2f3f0;
+  --c-ink: #1b1d24;
+  --c-graphite: #5d616b;
+  --c-rule: #d5d7d1;
+  --c-blueprint: #2340d0;
+  --c-blueprint-line: #b9c5ff;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
+  --font-body: 'Instrument Sans Variable', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --fs-hero: clamp(4.5rem, 17vw, 17rem);
+  --fs-display: clamp(2.75rem, 6vw, 5.5rem);
+  --fs-h3: clamp(1.5rem, 2.4vw, 2.25rem);
+  --fs-lead: clamp(1.125rem, 1.4vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Spacing (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 160px;
+
+  /* Layout */
+  --page-margin: clamp(20px, 5vw, 72px);
+  --gutter: clamp(16px, 2vw, 32px);
+  --nav-height: 72px;
+
+  /* Shape */
+  --radius-pill: 999px;
+  --radius-media: 4px;
+  --rule: 1px solid var(--scene-rule);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 700ms;
+}
+
+/* ---------- Scenes ----------
+   The page background shifts between three scenes while scrolling
+   (paper → ink → blueprint). Components read these variables instead of
+   raw colors so they stay legible in every scene. Registered so they
+   can transition smoothly. */
+
+@property --scene-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2f3f0;
+}
+
+@property --scene-fg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1b1d24;
+}
+
+@property --scene-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #5d616b;
+}
+
+@property --scene-rule {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #d5d7d1;
+}
+
+@property --scene-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #2340d0;
+}
+
+@property --scene-accent-fg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2f3f0;
+}
+
+:root,
+[data-scene='paper'] {
+  --scene-bg: var(--c-paper);
+  --scene-fg: var(--c-ink);
+  --scene-muted: var(--c-graphite);
+  --scene-rule: var(--c-rule);
+  --scene-accent: var(--c-blueprint);
+  --scene-accent-fg: var(--c-paper);
+}
+
+[data-scene='ink'] {
+  --scene-bg: var(--c-ink);
+  --scene-fg: var(--c-paper);
+  --scene-muted: #a2a6b0;
+  --scene-rule: #3a3d48;
+  --scene-accent: var(--c-blueprint-line);
+  --scene-accent-fg: var(--c-ink);
+}
+
+[data-scene='blueprint'] {
+  --scene-bg: var(--c-blueprint);
+  --scene-fg: var(--c-paper);
+  --scene-muted: var(--c-blueprint-line);
+  --scene-rule: rgb(185 197 255 / 0.35);
+  --scene-accent: var(--c-paper);
+  --scene-accent-fg: var(--c-blueprint);
+}

@@ -1,0 +1,86 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-5);
+  min-height: 48px;
+  border-radius: var(--radius-pill);
+  font-weight: 550;
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.sm {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  font-size: var(--fs-small);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.label {
+  position: relative;
+}
+
+.icon {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+/* Primary: ink pill, blueprint sweeps up on hover */
+.primary {
+  background: var(--scene-fg);
+  color: var(--scene-bg);
+}
+
+.primary .fill {
+  background: var(--scene-accent);
+}
+
+/* Secondary: outlined, ink sweeps up on hover */
+.secondary {
+  border: 1px solid var(--scene-fg);
+  color: var(--scene-fg);
+}
+
+.secondary .fill {
+  background: var(--scene-fg);
+}
+
+@media (hover: hover) {
+  .button:hover .fill {
+    transform: translateY(0);
+  }
+
+  .button:hover .icon {
+    transform: translate(2px, -2px);
+  }
+
+  .button:hover .iconDown {
+    transform: translateY(3px);
+  }
+
+  .primary:hover {
+    color: var(--scene-accent-fg);
+  }
+
+  .secondary:hover {
+    color: var(--scene-bg);
+  }
+}

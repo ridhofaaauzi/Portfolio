@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#2340d0"/>
+  <g stroke="#b9c5ff" stroke-opacity="0.12">
+    <path d="M100 0v1000M233 0v1000M366 0v1000M499 0v1000M632 0v1000M765 0v1000M898 0v1000M1031 0v1000M1164 0v1000M1297 0v1000M1430 0v1000"/>
+  </g>
+  <g fill="none" stroke="#b9c5ff" stroke-width="2">
+    <rect x="160" y="120" width="1280" height="760" rx="8"/>
+    <path d="M160 180h1280M400 180v700"/>
+  </g>
+  <g fill="#b9c5ff">
+    <circle cx="192" cy="150" r="7" fill-opacity="0.5"/>
+    <circle cx="216" cy="150" r="7" fill-opacity="0.5"/>
+    <circle cx="240" cy="150" r="7" fill-opacity="0.5"/>
+    <rect x="196" y="222" width="150" height="14" rx="7"/>
+    <rect x="196" y="274" width="170" height="10" rx="5" fill-opacity="0.45"/>
+    <rect x="186" y="304" width="190" height="34" rx="4" fill-opacity="0.18"/>
+    <rect x="196" y="316" width="120" height="10" rx="5"/>
+    <rect x="196" y="364" width="140" height="10" rx="5" fill-opacity="0.45"/>
+    <rect x="196" y="404" width="160" height="10" rx="5" fill-opacity="0.45"/>
+    <rect x="196" y="444" width="110" height="10" rx="5" fill-opacity="0.45"/>
+  </g>
+  <!-- Repair orders table -->
+  <g fill="#b9c5ff">
+    <rect x="448" y="222" width="300" height="22" rx="4"/>
+    <rect x="1196" y="216" width="196" height="36" rx="18" fill="#f2f3f0"/>
+  </g>
+  <g stroke="#b9c5ff" stroke-opacity="0.4" stroke-width="1.5">
+    <path d="M448 300h944M448 354h944M448 408h944M448 462h944M448 516h944"/>
+  </g>
+  <g fill="#b9c5ff" fill-opacity="0.55">
+    <rect x="448" y="320" width="110" height="12" rx="6"/>
+    <rect x="610" y="320" width="190" height="12" rx="6"/>
+    <rect x="860" y="320" width="140" height="12" rx="6"/>
+    <rect x="448" y="374" width="110" height="12" rx="6"/>
+    <rect x="610" y="374" width="160" height="12" rx="6"/>
+    <rect x="860" y="374" width="120" height="12" rx="6"/>
+    <rect x="448" y="428" width="110" height="12" rx="6"/>
+    <rect x="610" y="428" width="210" height="12" rx="6"/>
+    <rect x="860" y="428" width="150" height="12" rx="6"/>
+    <rect x="448" y="482" width="110" height="12" rx="6"/>
+    <rect x="610" y="482" width="170" height="12" rx="6"/>
+    <rect x="860" y="482" width="130" height="12" rx="6"/>
+  </g>
+  <g fill="none" stroke="#f2f3f0" stroke-width="2">
+    <rect x="1240" y="314" width="112" height="26" rx="13"/>
+    <rect x="1240" y="422" width="112" height="26" rx="13"/>
+  </g>
+  <g fill="#f2f3f0">
+    <rect x="1240" y="368" width="112" height="26" rx="13"/>
+    <rect x="1240" y="476" width="112" height="26" rx="13"/>
+  </g>
+  <!-- Balance sheet / P&L bars -->
+  <g fill="none" stroke="#b9c5ff" stroke-width="2">
+    <rect x="448" y="572" width="456" height="268" rx="6"/>
+    <rect x="936" y="572" width="456" height="268" rx="6"/>
+  </g>
+  <g fill="#b9c5ff">
+    <rect x="488" y="740" width="44" height="70"/>
+    <rect x="556" y="700" width="44" height="110"/>
+    <rect x="624" y="660" width="44" height="150"/>
+    <rect x="692" y="690" width="44" height="120"/>
+    <rect x="760" y="630" width="44" height="180" fill="#f2f3f0"/>
+    <rect x="828" y="650" width="44" height="160"/>
+  </g>
+  <g fill="#b9c5ff" fill-opacity="0.55">
+    <rect x="976" y="612" width="180" height="12" rx="6"/>
+    <rect x="976" y="660" width="376" height="10" rx="5"/>
+    <rect x="976" y="700" width="320" height="10" rx="5"/>
+    <rect x="976" y="740" width="350" height="10" rx="5"/>
+    <rect x="976" y="780" width="260" height="10" rx="5"/>
+  </g>
+</svg>
