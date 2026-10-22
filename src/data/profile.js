@@ -16,8 +16,8 @@ export const profile = {
     id: 'Saya membangun antarmuka web yang jelas di permukaan dan kokoh di dalamnya.',
   },
   intro: {
-    en: 'Currently at PT Amanah Karya Indonesia, building features for an HR information system and an Odoo-based ERP — from database queries to the screens people use every day.',
-    id: 'Saat ini di PT Amanah Karya Indonesia, membangun fitur untuk sistem informasi HR dan ERP berbasis Odoo — dari query database hingga layar yang dipakai orang setiap hari.',
+    en: 'Currently at PT Amanah Karya Indonesia, building features for an HR information system and an Odoo-based ERP.',
+    id: 'Saat ini di PT Amanah Karya Indonesia, membangun fitur untuk sistem informasi HR dan ERP berbasis Odoo.',
   },
   location: { en: 'Depok, West Java', id: 'Depok, Jawa Barat' },
   email: 'ridhofauzi.grafikaa@gmail.com',

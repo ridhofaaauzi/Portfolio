@@ -14,8 +14,8 @@ export const about = {
     {
       title: { en: 'Make it fast', id: 'Cepat dan efisien' },
       body: {
-        en: 'Speeding up the Time Off and Overtime modules with better queries, indexing and less duplicated code.',
-        id: 'Mempercepat modul Time Off dan Overtime lewat perbaikan query, indexing, dan pengurangan kode duplikat.',
+        en: 'Improved the performance of the Time Off and Overtime modules by optimizing database queries, adding indexes, and reducing code duplication to enhance efficiency and speed up application response times.',
+        id: 'Meningkatkan performa modul Time Off dan Overtime melalui optimasi query database, penambahan indeks (indexing), serta pengurangan duplikasi kode untuk meningkatkan efisiensi dan mempercepat waktu respons aplikasi.',
       },
     },
     {

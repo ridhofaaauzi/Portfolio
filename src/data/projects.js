@@ -16,8 +16,8 @@ export const projects = [
     id: 'sihris',
     title: 'SIHRIS',
     summary: {
-      en: 'A human resource information system for attendance, shifts, time off, overtime and payroll. I built user and device management with audit logging, payroll component assignment, and announcements and notifications — and sped up the Time Off and Overtime modules.',
-      id: 'Sistem informasi sumber daya manusia untuk absensi, shift, cuti, lembur, dan payroll. Saya membangun user dan device management beserta audit logging, penetapan komponen payroll, serta pengumuman dan notifikasi — dan mempercepat modul Time Off dan Overtime.',
+      en: 'A Human Resource Information System (HRIS) covering attendance, work shifts, time off, overtime, and payroll management. Responsible for developing user and device management features, implementing audit logging, configuring payroll components, and optimizing queries in the Time Off and Overtime modules to improve application performance.',
+      id: 'Sistem Informasi Sumber Daya Manusia (HRIS) yang mencakup pengelolaan absensi, shift kerja, cuti, lembur, dan penggajian (payroll). Bertanggung jawab dalam pengembangan manajemen pengguna dan perangkat, implementasi audit logging, konfigurasi komponen payroll, serta optimasi query pada modul Time Off dan Overtime untuk meningkatkan performa aplikasi.',
     },
     year: { en: '2024 – Now', id: '2024 – Sekarang' },
     role: 'Fullstack Developer',

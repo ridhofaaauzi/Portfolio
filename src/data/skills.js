@@ -10,7 +10,7 @@ export const skills = [
   },
   {
     group: 'Backend',
-    items: ['Laravel', 'Node.js', 'Express', 'Odoo'],
+    items: ['Laravel', 'Node.js', 'Express', 'Odoo', 'Go'],
   },
   {
     group: { en: 'Databases', id: 'Basis data' },
