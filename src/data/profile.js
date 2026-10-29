@@ -12,8 +12,8 @@ export const profile = {
   initials: 'RF',
   role: 'Fullstack Web Developer',
   headline: {
-    en: 'I build web interfaces that are clear on the surface and solid underneath.',
-    id: 'Saya membangun antarmuka web yang jelas di permukaan dan kokoh di dalamnya.',
+    en: 'Building intuitive, functional, and reliable web applications, from the user interface to the systems behind them.',
+    id: 'Membangun aplikasi web yang intuitif, fungsional, dan andal, dari antarmuka hingga sistem di baliknya.',
   },
   intro: {
     en: 'Currently at PT Amanah Karya Indonesia, building features for an HR information system and an Odoo-based ERP.',
