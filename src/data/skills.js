@@ -6,11 +6,11 @@ export const skills = [
   },
   {
     group: 'Frontend',
-    items: ['React', 'Tailwind CSS', 'Bootstrap'],
+    items: ['React', 'Tailwind CSS', 'Bootstrap', 'Shadcn UI'],
   },
   {
     group: 'Backend',
-    items: ['Laravel', 'Node.js', 'Express', 'Odoo', 'Go'],
+    items: ['Laravel', 'Node.js', 'Express', 'Odoo', 'Go', 'Codeigniter', 'Rest API'],
   },
   {
     group: { en: 'Databases', id: 'Basis data' },

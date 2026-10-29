@@ -1,6 +1,25 @@
 .projects {
+  position: relative;
+  isolation: isolate;
   align-items: end;
   padding-block: var(--space-10) var(--space-9);
+}
+
+/* Blueprint grid across the whole section, fading out at the top and bottom edges */
+.projects::before {
+  --grid-line: color-mix(in srgb, var(--scene-accent) 12%, transparent);
+
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  pointer-events: none;
 }
 
 .title {
@@ -16,28 +35,166 @@
   color: var(--scene-muted);
 }
 
-/* Feature project full width, then pairs: wide left, narrow right set lower */
-.list {
+/* ---------- Carousel: native scroll-snap, next project peeks in from the right ---------- */
+
+.carousel {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-  row-gap: var(--space-9);
   margin-top: var(--space-8);
-  padding: 0;
+}
+
+.track {
+  --slide-gap: clamp(20px, 3vw, 48px);
+
+  position: relative;
+  display: flex;
+  gap: var(--slide-gap);
+  /* Bleed to the viewport edges so the next slide can peek in */
+  margin-inline: calc(-1 * var(--page-margin));
+  padding: 0 var(--page-margin) var(--space-2);
+  scroll-padding-inline: var(--page-margin);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   list-style: none;
 }
 
-.item {
-  grid-column: 1 / -1;
+.track::-webkit-scrollbar {
+  display: none;
 }
 
-.item:nth-child(2n) {
-  grid-column: 1 / span 7;
+.slide {
+  flex: 0 0 min(80%, 1120px);
+  scroll-snap-align: start;
+  opacity: 0.4;
+  transition: opacity var(--dur-slow) var(--ease-out);
 }
 
-.item:nth-child(2n + 3) {
-  grid-column: 9 / -1;
-  margin-top: var(--space-10);
+.slide[data-active],
+.slide:focus-within {
+  opacity: 1;
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.counter {
+  flex: none;
+  font-family: var(--font-display);
+  font-stretch: 80%;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.current {
+  font-size: var(--fs-h3);
+  font-weight: 650;
+}
+
+.total {
+  color: var(--scene-muted);
+}
+
+.progress {
+  flex: 1;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.tick {
+  position: relative;
+  flex: 1;
+  height: 24px;
+  cursor: pointer;
+}
+
+.tick::before,
+.tick::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--scene-rule);
+}
+
+.tick::after {
+  background: var(--scene-fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.tick[data-active]::after {
+  transform: scaleX(1);
+}
+
+/* Autoplay: the active bar doubles as the timer and freezes while paused */
+.carousel[data-autoplay] .tick[data-active]::after {
+  transform: scaleX(0);
+  animation: tick-fill var(--autoplay-duration) linear forwards;
+  animation-play-state: paused;
+}
+
+.carousel[data-playing] .tick[data-active]::after {
+  animation-play-state: running;
+}
+
+@keyframes tick-fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.toggle {
+  border-color: var(--scene-rule);
+}
+
+.arrows {
+  flex: none;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--scene-fg);
+  border-radius: var(--radius-pill);
+  color: var(--scene-fg);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.arrow:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .arrow:hover:not(:disabled) {
+    background: var(--scene-fg);
+    color: var(--scene-bg);
+  }
+
+  .tick:hover::before {
+    background: var(--scene-muted);
+  }
 }
 
 .more {
@@ -80,12 +237,8 @@
     margin-top: var(--space-4);
   }
 
-  .item:nth-child(2n) {
-    grid-column: 1 / span 6;
-  }
-
-  .item:nth-child(2n + 3) {
-    grid-column: 7 / -1;
+  .slide {
+    flex-basis: 86%;
   }
 }
 
@@ -94,12 +247,21 @@
     padding-block: var(--space-9) var(--space-8);
   }
 
-  .item:nth-child(n) {
-    grid-column: 1 / -1;
-    margin-top: 0;
+  .projects::before {
+    background-size: 28px 28px;
   }
 
-  .list {
-    row-gap: var(--space-8);
+  .slide {
+    flex-basis: 88%;
+  }
+
+  .controls {
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .arrow {
+    width: 44px;
+    height: 44px;
   }
 }
