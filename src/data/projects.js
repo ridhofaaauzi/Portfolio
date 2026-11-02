@@ -67,7 +67,7 @@ export const projects = [
     },
     year: { en: '2025 – Now', id: '2025 – Sekarang' },
     role: 'Fullstack Developer',
-    stack: ['Odoo', 'Python'],
+    stack: ['Odoo', 'Python', 'PostgreSQL'],
     image: mflashShot ?? mflashCover,
     imageAlt: mflashShot
       ? { en: 'MFLASH ERP screen in Odoo', id: 'Tampilan MFLASH ERP di Odoo' }
