@@ -6,14 +6,15 @@ import '@fontsource-variable/jetbrains-mono/index.css'
 import './styles/tokens.css'
 import './styles/global.css'
 import { Root } from './Root'
-import { languageFromPath } from './i18n/language'
+import { parsePath } from './routes'
 import { runIntro } from './intro/intro'
 import { profile } from './data/profile'
 
 const container = document.getElementById('root')
+const { lang, route } = parsePath(window.location.pathname)
 const app = (
   <StrictMode>
-    <Root lang={languageFromPath(window.location.pathname)} />
+    <Root lang={lang} route={route} />
   </StrictMode>
 )
 

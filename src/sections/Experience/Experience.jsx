@@ -6,7 +6,7 @@ import { useLanguage } from '../../i18n/language'
 import styles from './Experience.module.css'
 
 export function Experience() {
-  const { t } = useLanguage()
+  const { t, l } = useLanguage()
 
   return (
     <section
@@ -19,9 +19,10 @@ export function Experience() {
         {t('experienceTitle')}
       </h2>
       {profile.resume && (
-        <a href={profile.resume} className={styles.resume}>
+        <a href={l(profile.resume)} className={styles.resume} target="_blank" rel="noreferrer">
           {t('downloadResume')}
           <ArrowUpRight size={18} strokeWidth={1.75} aria-hidden="true" />
+          <span className="visually-hidden"> {t('newTab')}</span>
         </a>
       )}
 

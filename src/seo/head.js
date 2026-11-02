@@ -1,8 +1,10 @@
 import { profile } from '../data/profile'
+import { projects } from '../data/projects'
 import { skills } from '../data/skills'
-import { absoluteUrl, pageFor, site } from '../data/site'
+import { absoluteUrl, languageInfo, site } from '../data/site'
 import { localize } from '../i18n/language'
 import { ui } from '../i18n/ui'
+import { home, pathFor } from '../routes'
 
 const escapeAttr = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -10,10 +12,64 @@ const escapeAttr = (value) =>
 // JSON-LD lives in a <script>, so "</script>" inside a string must not close it.
 const jsonLd = (data) => JSON.stringify(data).replace(/</g, '\\u003c')
 
-function structuredData(lang) {
-  const page = pageFor(lang)
-  const url = absoluteUrl(page.path)
+// Title and description for a page; case studies use the project's own summary.
+export function pageMeta(lang, route) {
+  if (route.type !== 'project') return { title: ui[lang].metaTitle, description: ui[lang].metaDescription }
+  const project = projects.find((p) => p.id === route.id)
+  return {
+    project,
+    title: `${project.title} — ${ui[lang].caseStudy} · ${profile.name}`,
+    description: localize(project.summary, lang),
+  }
+}
+
+function structuredData(lang, route) {
+  const url = absoluteUrl(pathFor(route, lang))
   const personId = `${site.url}/#person`
+  const { project, title, description } = pageMeta(lang, route)
+
+  const pageNodes = project
+    ? [
+        {
+          '@type': 'WebPage',
+          '@id': `${url}#webpage`,
+          url,
+          name: title,
+          description,
+          inLanguage: lang,
+          isPartOf: { '@id': `${site.url}/#website` },
+          about: { '@id': `${url}#project` },
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: profile.name, item: absoluteUrl(pathFor(home, lang)) },
+              { '@type': 'ListItem', position: 2, name: project.title, item: url },
+            ],
+          },
+        },
+        {
+          '@type': 'CreativeWork',
+          '@id': `${url}#project`,
+          name: project.title,
+          description,
+          image: absoluteUrl(project.image),
+          creator: { '@id': personId },
+          ...(project.stack.length > 0 && { keywords: project.stack.join(', ') }),
+          ...(project.links.demo && { sameAs: project.links.demo }),
+        },
+      ]
+    : [
+        {
+          '@type': 'ProfilePage',
+          '@id': `${url}#webpage`,
+          url,
+          name: title,
+          description,
+          inLanguage: lang,
+          isPartOf: { '@id': `${site.url}/#website` },
+          mainEntity: { '@id': personId },
+        },
+      ]
 
   return {
     '@context': 'https://schema.org',
@@ -23,19 +79,10 @@ function structuredData(lang) {
         '@id': `${site.url}/#website`,
         url: absoluteUrl('/'),
         name: profile.name,
-        inLanguage: site.pages.map((p) => p.lang),
+        inLanguage: site.languages.map((l) => l.lang),
         publisher: { '@id': personId },
       },
-      {
-        '@type': 'ProfilePage',
-        '@id': `${url}#webpage`,
-        url,
-        name: ui[lang].metaTitle,
-        description: ui[lang].metaDescription,
-        inLanguage: lang,
-        isPartOf: { '@id': `${site.url}/#website` },
-        mainEntity: { '@id': personId },
-      },
+      ...pageNodes,
       {
         '@type': 'Person',
         '@id': personId,
@@ -59,14 +106,12 @@ function structuredData(lang) {
   }
 }
 
-/** Everything SEO-related that goes in <head> for the page in `lang`. */
-export function renderHead(lang) {
-  const page = pageFor(lang)
-  const url = absoluteUrl(page.path)
-  const title = ui[lang].metaTitle
-  const description = ui[lang].metaDescription
+/** Everything SEO-related that goes in <head> for `route` in `lang`. */
+export function renderHead(lang, route) {
+  const url = absoluteUrl(pathFor(route, lang))
+  const { project, title, description } = pageMeta(lang, route)
   const image = absoluteUrl(site.ogImage.path)
-  const alternates = site.pages.filter((p) => p.lang !== lang)
+  const alternates = site.languages.filter((l) => l.lang !== lang)
 
   const tags = [
     `<title>${escapeAttr(title)}</title>`,
@@ -74,29 +119,35 @@ export function renderHead(lang) {
     `<meta name="author" content="${escapeAttr(profile.name)}" />`,
     `<meta name="robots" content="index, follow, max-image-preview:large" />`,
     `<link rel="canonical" href="${url}" />`,
-    ...site.pages.map((p) => `<link rel="alternate" hreflang="${p.lang}" href="${absoluteUrl(p.path)}" />`),
-    `<link rel="alternate" hreflang="x-default" href="${absoluteUrl(site.pages[0].path)}" />`,
+    ...site.languages.map(
+      (l) => `<link rel="alternate" hreflang="${l.lang}" href="${absoluteUrl(pathFor(route, l.lang))}" />`,
+    ),
+    `<link rel="alternate" hreflang="x-default" href="${absoluteUrl(pathFor(route, site.languages[0].lang))}" />`,
 
-    `<meta property="og:type" content="profile" />`,
+    `<meta property="og:type" content="${project ? 'article' : 'profile'}" />`,
     `<meta property="og:site_name" content="${escapeAttr(profile.name)}" />`,
     `<meta property="og:title" content="${escapeAttr(title)}" />`,
     `<meta property="og:description" content="${escapeAttr(description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:locale" content="${page.locale}" />`,
-    ...alternates.map((p) => `<meta property="og:locale:alternate" content="${p.locale}" />`),
+    `<meta property="og:locale" content="${languageInfo(lang).locale}" />`,
+    ...alternates.map((l) => `<meta property="og:locale:alternate" content="${l.locale}" />`),
     `<meta property="og:image" content="${image}" />`,
     `<meta property="og:image:width" content="${site.ogImage.width}" />`,
     `<meta property="og:image:height" content="${site.ogImage.height}" />`,
     `<meta property="og:image:alt" content="${escapeAttr(`${profile.name}, ${profile.role}`)}" />`,
-    `<meta property="profile:first_name" content="Ridho" />`,
-    `<meta property="profile:last_name" content="Fauzi Grafika" />`,
+    ...(project
+      ? []
+      : [
+          `<meta property="profile:first_name" content="Ridho" />`,
+          `<meta property="profile:last_name" content="Fauzi Grafika" />`,
+        ]),
 
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(title)}" />`,
     `<meta name="twitter:description" content="${escapeAttr(description)}" />`,
     `<meta name="twitter:image" content="${image}" />`,
 
-    `<script type="application/ld+json">${jsonLd(structuredData(lang))}</script>`,
+    `<script type="application/ld+json">${jsonLd(structuredData(lang, route))}</script>`,
   ]
 
   return tags.join('\n    ')

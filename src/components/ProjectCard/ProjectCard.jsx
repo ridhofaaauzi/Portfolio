@@ -1,7 +1,8 @@
 import { m, useReducedMotion } from 'motion/react'
-import { ArrowUpRight, Lock } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Lock } from 'lucide-react'
 import { Button } from '../Button/Button'
 import { useLanguage } from '../../i18n/language'
+import { pathFor } from '../../routes'
 import styles from './ProjectCard.module.css'
 
 function hostname(url) {
@@ -12,14 +13,16 @@ function hostname(url) {
   }
 }
 
-export function ProjectCard({ project }) {
+// variant: 'feature' (full width) or 'compact' (half width, text stacked)
+export function ProjectCard({ project, variant = 'feature' }) {
   const reduceMotion = useReducedMotion()
-  const { t, l } = useLanguage()
-  const { title, summary, year, role, stack, image, imageAlt, links } = project
+  const { lang, t, l } = useLanguage()
+  const { id, title, summary, year, role, stack, image, imageAlt, links } = project
   const primaryLink = links.demo ?? links.repo
+  const caseStudy = pathFor({ type: 'project', id }, lang)
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} data-variant={variant}>
       <m.div
         className={styles.plate}
         initial={reduceMotion ? false : { clipPath: 'inset(18% 6% 18% 6%)' }}
@@ -48,13 +51,9 @@ export function ProjectCard({ project }) {
       <div className={styles.body}>
         <div className={styles.heading}>
           <h3 className={styles.title}>
-            {primaryLink ? (
-              <a href={primaryLink} className={styles.titleLink} target="_blank" rel="noreferrer">
-                {title}
-              </a>
-            ) : (
-              title
-            )}
+            <a href={caseStudy} className={styles.titleLink}>
+              {title}
+            </a>
           </h3>
           <p className={styles.summary}>{l(summary)}</p>
         </div>
@@ -83,38 +82,40 @@ export function ProjectCard({ project }) {
             )}
           </dl>
 
-          {primaryLink && (
-            <div className={styles.links}>
-              {links.demo && (
-                <Button
-                  href={links.demo}
-                  variant="secondary"
-                  size="sm"
-                  icon={ArrowUpRight}
-                  className={styles.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t('visitSite')}
-                  <span className="visually-hidden"> {t('newTab')}</span>
-                </Button>
-              )}
-              {links.repo && (
-                <Button
-                  href={links.repo}
-                  variant="secondary"
-                  size="sm"
-                  icon={ArrowUpRight}
-                  className={styles.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t('sourceCode')}
-                  <span className="visually-hidden"> {t('newTab')}</span>
-                </Button>
-              )}
-            </div>
-          )}
+          <div className={styles.links}>
+            <Button href={caseStudy} size="sm" icon={ArrowRight} className={styles.link}>
+              {t('readCaseStudy')}
+              <span className="visually-hidden">: {title}</span>
+            </Button>
+            {links.demo && (
+              <Button
+                href={links.demo}
+                variant="secondary"
+                size="sm"
+                icon={ArrowUpRight}
+                className={styles.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t('visitSite')}
+                <span className="visually-hidden"> {t('newTab')}</span>
+              </Button>
+            )}
+            {links.repo && (
+              <Button
+                href={links.repo}
+                variant="secondary"
+                size="sm"
+                icon={ArrowUpRight}
+                className={styles.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t('sourceCode')}
+                <span className="visually-hidden"> {t('newTab')}</span>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </article>

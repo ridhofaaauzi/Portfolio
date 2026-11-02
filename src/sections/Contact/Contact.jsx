@@ -89,6 +89,15 @@ export function Contact() {
             </a>
           </li>
         ))}
+        {profile.resume && (
+          <li>
+            <a href={l(profile.resume)} className={styles.social} target="_blank" rel="noreferrer">
+              {t('resume')}
+              <ArrowUpRight size={18} strokeWidth={1.75} aria-hidden="true" />
+              <span className="visually-hidden"> {t('newTab')}</span>
+            </a>
+          </li>
+        )}
         <li className={styles.location}>{l(profile.location)}</li>
       </ul>
     </section>

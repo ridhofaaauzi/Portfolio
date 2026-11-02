@@ -25,7 +25,8 @@ export const profile = {
     en: 'Have a project or a role in mind? Email is the fastest way to reach me.',
     id: 'Punya proyek atau posisi yang ingin dibicarakan? Email adalah cara tercepat menghubungi saya.',
   },
-  resume: null, // e.g. '/resume.pdf' (put the file in /public)
+  // PDFs in /public, one per language
+  resume: { en: '/CV_Ridho_Fauzi_Grafika_English.pdf', id: '/CV_Ridho_Fauzi_Grafika.pdf' },
   portrait: Object.values(portraits)[0] ?? null,
   socials: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ridhofaauzi/' },

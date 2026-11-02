@@ -202,6 +202,21 @@
   }
 }
 
+/* ---------- Compact: half-width cards, text stacked under the preview ---------- */
+
+.card[data-variant='compact'] .plate {
+  aspect-ratio: 16 / 10;
+}
+
+.card[data-variant='compact'] .heading,
+.card[data-variant='compact'] .aside {
+  grid-column: 1 / -1;
+}
+
+.card[data-variant='compact'] .title {
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+}
+
 @media (max-width: 1023px) {
   .heading,
   .aside {

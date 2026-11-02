@@ -5,6 +5,7 @@ import { navigation } from '../../data/navigation'
 import { profile } from '../../data/profile'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { languages, useLanguage } from '../../i18n/language'
+import { useHomeHref } from '../../routes'
 import { Button } from '../Button/Button'
 import styles from './Navbar.module.css'
 
@@ -15,6 +16,7 @@ export function Navbar() {
   const activeId = useActiveSection(ids)
   const reduceMotion = useReducedMotion()
   const { lang, setLang, t } = useLanguage()
+  const homeHref = useHomeHref()
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -99,7 +101,7 @@ export function Navbar() {
           {navigation.map((item) => (
             <li key={item.id}>
               <a
-                href={`#${item.id}`}
+                href={homeHref(item.id, lang)}
                 className={styles.link}
                 aria-current={activeId === item.id ? 'location' : undefined}
               >
@@ -148,7 +150,7 @@ export function Navbar() {
                 >
                   <a
                     ref={index === 0 ? firstSheetLinkRef : undefined}
-                    href={`#${item.id}`}
+                    href={homeHref(item.id, lang)}
                     className={styles.sheetLink}
                     onClick={() => setMenuOpen(false)}
                   >

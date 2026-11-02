@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
-import { absoluteUrl, pageFor } from '../data/site'
+import { absoluteUrl } from '../data/site'
+import { pathFor, useRoute } from '../routes'
+import { pageMeta } from '../seo/head'
 import { LanguageContext } from './language'
-import { ui } from './ui'
 
 const STORAGE_KEY = 'lang'
 
@@ -11,10 +12,11 @@ function preferredLanguage() {
   return navigator.language?.toLowerCase().startsWith('id') ? 'id' : 'en'
 }
 
-// initialLang comes from the URL (/ or /id/) so the prerendered HTML and the
+// initialLang comes from the URL (/… or /id/…) so the prerendered HTML and the
 // first client render agree; each language has its own indexable page.
 export function LanguageProvider({ initialLang = 'en', children }) {
   const [lang, setLangState] = useState(initialLang)
+  const route = useRoute()
 
   // On the default English URL, honour a saved or browser preference after hydration.
   useEffect(() => {
@@ -31,15 +33,16 @@ export function LanguageProvider({ initialLang = 'en', children }) {
   }, [])
 
   useEffect(() => {
-    const path = pageFor(lang).path
+    const path = pathFor(route, lang)
+    const { title, description } = pageMeta(lang, route)
     if (window.location.pathname !== path) {
       window.history.replaceState(null, '', path + window.location.hash)
     }
     document.documentElement.lang = lang
-    document.title = ui[lang].metaTitle
-    document.querySelector('meta[name="description"]')?.setAttribute('content', ui[lang].metaDescription)
+    document.title = title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', absoluteUrl(path))
-  }, [lang])
+  }, [lang, route])
 
   return <LanguageContext.Provider value={{ lang, setLang }}>{children}</LanguageContext.Provider>
 }
