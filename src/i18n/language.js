@@ -6,6 +6,9 @@ export const languages = [
   { code: 'id', label: 'ID', name: 'Bahasa Indonesia' },
 ]
 
+// '/id/…' is Indonesian; everything else is the English default.
+export const languageFromPath = (path) => (/^\/id(\/|$)/.test(path) ? 'id' : 'en')
+
 export const LanguageContext = createContext({ lang: 'en', setLang: () => {} })
 
 // Content in src/data is stored as { en, id } pairs; plain values pass through.

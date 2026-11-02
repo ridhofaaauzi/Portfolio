@@ -27,6 +27,10 @@ export function useIntroDone() {
       return () => listeners.delete(listener)
     },
     () => done,
+    // Also used while hydrating the prerendered page. Motion renders `initial`
+    // styles either way, so reporting the real value keeps the markup identical
+    // while letting the entrance animations start on mount.
+    () => done,
   )
 }
 

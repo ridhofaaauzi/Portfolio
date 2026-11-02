@@ -25,8 +25,9 @@ export function HeroContent({ variant, animate, play = true }) {
 
   return (
     <div className={styles.content} data-variant={variant}>
+      {/* Only the visible surface is the page heading; the blueprint copy must not add a second h1 */}
       <SplitText
-        as="h1"
+        as={isBlueprint ? 'p' : 'h1'}
         lines={profile.displayName}
         label={profile.name}
         trigger={animate ? 'mount' : 'none'}
@@ -47,7 +48,14 @@ export function HeroContent({ variant, animate, play = true }) {
         transition={{ delay: 0.35, duration: 1.1, ease }}
       >
         {profile.portrait && !isBlueprint ? (
-          <img src={profile.portrait} alt={`${t('portraitOf')} ${profile.name}`} width="640" height="800" decoding="async" />
+          <img
+            src={profile.portrait}
+            alt={`${t('portraitOf')} ${profile.name}`}
+            width="640"
+            height="800"
+            fetchPriority="high"
+            decoding="async"
+          />
         ) : (
           <PortraitPlaceholder blueprint={isBlueprint} label={t('portraitPlaceholder')} />
         )}

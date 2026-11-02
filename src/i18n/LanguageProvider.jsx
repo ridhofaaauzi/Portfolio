@@ -1,23 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { absoluteUrl, pageFor } from '../data/site'
 import { LanguageContext } from './language'
 import { ui } from './ui'
 
 const STORAGE_KEY = 'lang'
 
-function initialLanguage() {
+function preferredLanguage() {
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'en' || saved === 'id') return saved
   return navigator.language?.toLowerCase().startsWith('id') ? 'id' : 'en'
 }
 
-export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(initialLanguage)
+// initialLang comes from the URL (/ or /id/) so the prerendered HTML and the
+// first client render agree; each language has its own indexable page.
+export function LanguageProvider({ initialLang = 'en', children }) {
+  const [lang, setLangState] = useState(initialLang)
+
+  // On the default English URL, honour a saved or browser preference after hydration.
+  useEffect(() => {
+    if (initialLang !== 'en') return
+    const preferred = preferredLanguage()
+    // Must run after hydration (localStorage isn't known to the prerendered HTML)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (preferred !== initialLang) setLangState(preferred)
+  }, [initialLang])
+
+  const setLang = useCallback((next) => {
+    localStorage.setItem(STORAGE_KEY, next)
+    setLangState(next)
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, lang)
+    const path = pageFor(lang).path
+    if (window.location.pathname !== path) {
+      window.history.replaceState(null, '', path + window.location.hash)
+    }
     document.documentElement.lang = lang
     document.title = ui[lang].metaTitle
     document.querySelector('meta[name="description"]')?.setAttribute('content', ui[lang].metaDescription)
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', absoluteUrl(path))
   }, [lang])
 
   return <LanguageContext.Provider value={{ lang, setLang }}>{children}</LanguageContext.Provider>

@@ -17,7 +17,8 @@
 }
 
 .sm {
-  min-height: 40px;
+  /* Keep the 44px touch target even though the label is smaller */
+  min-height: 44px;
   padding: 0 var(--space-4);
   font-size: var(--fs-small);
 }

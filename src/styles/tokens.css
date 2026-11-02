@@ -6,6 +6,15 @@
   --c-rule: #d5d7d1;
   --c-blueprint: #2340d0;
   --c-blueprint-line: #b9c5ff;
+  /* Neutrals derived from paper/rule, for the well an image sits in */
+  --c-image-well: #dcded8;
+  --c-image-glyph: #c7cac3;
+  /* Mask stops: black marks "fully visible", independent of the palette */
+  --mask-stop-visible: #000;
+  /* Blueprint layer at low opacity: hairlines, washes, strokes */
+  --c-blueprint-grid: rgb(185 197 255 / 0.15);
+  --c-blueprint-wash: rgb(185 197 255 / 0.05);
+  --c-blueprint-line-strong: rgb(185 197 255 / 0.65);
 
   /* Type */
   --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
@@ -31,8 +40,14 @@
   --space-9: 96px;
   --space-10: 160px;
 
-  /* Layout */
-  --page-margin: clamp(20px, 5vw, 72px);
+  /* Layout
+     The container is capped and centred: below 1440 the margin is the fluid
+     gutter, above it the margin absorbs the extra width, so the measure and
+     the grids stop growing while the gutters keep going. Full-bleed elements
+     (the project carousel, the blueprint grid) use the same value to bleed
+     back out to the viewport edge. */
+  --container: 1440px;
+  --page-margin: max(clamp(20px, 5vw, 72px), (100% - var(--container)) / 2);
   --gutter: clamp(16px, 2vw, 32px);
   --nav-height: 72px;
 

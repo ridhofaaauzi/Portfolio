@@ -16,8 +16,8 @@ export const projects = [
     id: 'sihris',
     title: 'SIHRIS',
     summary: {
-      en: 'A Human Resource Information System (HRIS) covering attendance, work shifts, time off, overtime, and payroll management. Responsible for developing user and device management features, implementing audit logging, configuring payroll components, and optimizing queries in the Time Off and Overtime modules to improve application performance.',
-      id: 'Sistem Informasi Sumber Daya Manusia (HRIS) yang mencakup pengelolaan absensi, shift kerja, cuti, lembur, dan penggajian (payroll). Bertanggung jawab dalam pengembangan manajemen pengguna dan perangkat, implementasi audit logging, konfigurasi komponen payroll, serta optimasi query pada modul Time Off dan Overtime untuk meningkatkan performa aplikasi.',
+      en: 'An HRIS for attendance, shifts, time off, overtime and payroll. I built user and device management with audit logging, and sped up the Time Off and Overtime modules.',
+      id: 'HRIS untuk absensi, shift kerja, cuti, lembur dan penggajian. Saya membangun manajemen pengguna dan perangkat dengan audit logging, serta mempercepat modul Time Off dan Overtime.',
     },
     year: { en: '2024 – Now', id: '2024 – Sekarang' },
     role: 'Fullstack Developer',
@@ -33,8 +33,8 @@ export const projects = [
     id: 'mflash',
     title: 'MFLASH ERP',
     summary: {
-      en: 'Odoo ERP for a repair-service business. I built technician override requests with admin approval, automatic Sales PIC assignment, payment-method-to-COA mapping, and more flexible Balance Sheet and P&L reports.',
-      id: 'ERP berbasis Odoo untuk bisnis jasa servis. Saya membangun request override teknisi dengan persetujuan admin, penetapan Sales PIC otomatis, pemetaan metode pembayaran ke COA, serta laporan Balance Sheet dan Laba Rugi yang lebih fleksibel.',
+      en: 'Odoo ERP for a repair service. I built technician override approvals, automatic Sales PIC assignment, payment-to-COA mapping, and flexible Balance Sheet and P&L reports.',
+      id: 'ERP Odoo untuk jasa servis. Saya membangun persetujuan override teknisi, penetapan Sales PIC otomatis, pemetaan pembayaran ke COA, serta laporan Balance Sheet dan Laba Rugi yang fleksibel.',
     },
     year: { en: '2025 – Now', id: '2025 – Sekarang' },
     role: 'Fullstack Developer',
@@ -52,8 +52,8 @@ export const projects = [
     id: 'berbagilink',
     title: 'Berbagilink',
     summary: {
-      en: 'A one-link mini-website platform for online stores, events and donations. I built the REST API behind its mobile app, an affiliate feature based on shareable links, data import and export, and a unique QR code for every store.',
-      id: 'Platform mini-website satu tautan untuk toko online, event, dan donasi. Saya membangun REST API untuk aplikasi mobile-nya, fitur afiliasi berbasis tautan, impor dan ekspor data, serta QR code unik untuk setiap toko.',
+      en: 'A one-link mini-website platform for stores, events and donations. I built the mobile REST API, link-based affiliate tracking, data import and export, and a unique QR code per store.',
+      id: 'Platform mini-website satu tautan untuk toko, event dan donasi. Saya membangun REST API untuk mobile, afiliasi berbasis tautan, impor dan ekspor data, serta QR code unik per toko.',
     },
     year: '2024 – 2025',
     role: { en: 'Fullstack Developer (intern)', id: 'Fullstack Developer (magang)' },

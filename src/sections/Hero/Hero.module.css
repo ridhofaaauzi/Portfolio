@@ -41,7 +41,7 @@
   aspect-ratio: 4 / 5;
   margin-bottom: 0.6vw;
   border-radius: var(--radius-media);
-  background: #dcded8;
+  background: var(--c-image-well);
   overflow: hidden;
 }
 
@@ -57,7 +57,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  fill: #c7cac3;
+  fill: var(--c-image-glyph);
 }
 
 .portraitCaption {
@@ -130,13 +130,13 @@
 }
 
 .grid span {
-  border-inline: 1px solid rgb(185 197 255 / 0.16);
-  background: rgb(185 197 255 / 0.05);
+  border-inline: 1px solid var(--c-blueprint-grid);
+  background: var(--c-blueprint-wash);
 }
 
 .content[data-variant='blueprint'] [data-tag] {
   position: relative;
-  outline: 1px dashed rgb(185 197 255 / 0.7);
+  outline: 1px dashed var(--c-blueprint-line-strong);
   outline-offset: 4px;
 }
 
@@ -145,7 +145,7 @@
   position: absolute;
   left: -4px;
   bottom: calc(100% + 6px);
-  padding: 1px 6px;
+  padding: 1px var(--space-2);
   font-family: var(--font-code);
   font-size: 11px;
   font-weight: 500;
@@ -188,7 +188,7 @@
 
 .content[data-variant='blueprint'] .portraitSvg {
   fill: none;
-  stroke: rgb(185 197 255 / 0.6);
+  stroke: var(--c-blueprint-line-strong);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
@@ -225,7 +225,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 40px;
+  /* Matches the shared button's 44px touch target */
+  min-height: 44px;
   padding: 0 var(--space-4);
   border-radius: var(--radius-pill);
   border: 1px solid var(--c-ink);

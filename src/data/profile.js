@@ -27,5 +27,8 @@ export const profile = {
   },
   resume: null, // e.g. '/resume.pdf' (put the file in /public)
   portrait: Object.values(portraits)[0] ?? null,
-  socials: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/ridhofaauzi/' }],
+  socials: [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ridhofaauzi/' },
+    { label: 'GitHub', href: 'https://github.com/ridhofaaauzi' },
+  ],
 }

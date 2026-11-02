@@ -3,7 +3,7 @@ export const ui = {
   en: {
     metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer',
     metaDescription:
-      'Portfolio of Ridho Fauzi Grafika, a fullstack web developer from Depok building HR and ERP systems.',
+      'Ridho Fauzi Grafika, fullstack web developer in Depok, Indonesia. Builds HR systems and Odoo ERP with React, Laravel, Node.js and Go.',
     skipToContent: 'Skip to content',
     backToTopLabel: 'back to top',
     letsTalk: 'Let’s talk',
@@ -59,7 +59,7 @@ export const ui = {
   id: {
     metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer',
     metaDescription:
-      'Portofolio Ridho Fauzi Grafika, fullstack web developer dari Depok yang membangun sistem HR dan ERP.',
+      'Ridho Fauzi Grafika, fullstack web developer di Depok, Indonesia. Membangun sistem HR dan ERP Odoo dengan React, Laravel, Node.js, dan Go.',
     skipToContent: 'Langsung ke konten',
     backToTopLabel: 'kembali ke atas',
     letsTalk: 'Hubungi saya',
