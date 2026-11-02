@@ -6,8 +6,9 @@ import { animate } from 'motion/react'
 // The overlay markup lives in index.html so it covers the first paint.
 
 const SEEN_KEY = 'intro-seen'
-const MIN_LOADING_MS = 700
-const MAX_LOADING_MS = 2500
+// Kept short: visitors (often recruiters opening many tabs) see the hero within ~1.5s
+const MIN_LOADING_MS = 300
+const MAX_LOADING_MS = 1000
 const easeInOut = [0.65, 0, 0.35, 1]
 const easeOut = [0.22, 1, 0.36, 1]
 
@@ -70,23 +71,23 @@ export async function runIntro(images = []) {
 
   try {
     // 1. Line grows towards 85% while assets load, then completes
-    const grow = animate(line, { transform: ['scaleY(0)', 'scaleY(0.85)'] }, { duration: 1.1, ease: easeOut })
+    const grow = animate(line, { transform: ['scaleY(0)', 'scaleY(0.85)'] }, { duration: 0.6, ease: easeOut })
     await whenReady(images)
     grow.stop()
-    await animate(line, { transform: 'scaleY(1)' }, { duration: 0.3, ease: easeOut })
+    await animate(line, { transform: 'scaleY(1)' }, { duration: 0.2, ease: easeOut })
 
     // 2. The line widens into a full blueprint panel
     await Promise.all([
-      animate(halves, { transform: ['scaleX(0)', 'scaleX(1)'] }, { duration: 0.6, ease: easeInOut }),
-      animate(line, { opacity: 0 }, { duration: 0.2, delay: 0.1 }),
+      animate(halves, { transform: ['scaleX(0)', 'scaleX(1)'] }, { duration: 0.4, ease: easeInOut }),
+      animate(line, { opacity: 0 }, { duration: 0.15, delay: 0.05 }),
     ])
 
     // 3. Panel splits open from the centre; the hero starts as it opens
     overlay.style.background = 'transparent'
     finish()
     await Promise.all([
-      animate(left, { transform: ['scaleX(1)', 'translateX(-100%)'] }, { duration: 0.8, ease: easeInOut }),
-      animate(right, { transform: ['scaleX(1)', 'translateX(100%)'] }, { duration: 0.8, ease: easeInOut }),
+      animate(left, { transform: ['scaleX(1)', 'translateX(-100%)'] }, { duration: 0.6, ease: easeInOut }),
+      animate(right, { transform: ['scaleX(1)', 'translateX(100%)'] }, { duration: 0.6, ease: easeInOut }),
     ])
   } finally {
     overlay.remove()

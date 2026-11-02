@@ -56,11 +56,16 @@ export const ui = {
     copied: 'Copied',
     copiedStatus: 'Email address copied to clipboard',
 
+    notFoundTitle: 'Page not found',
+    notFoundBody: 'This page doesn’t exist or has moved. The rest of the portfolio is still here.',
+    backHome: 'Back to home',
+    notFoundWork: 'Or go straight to a project',
+
     builtWithFooter: 'Built with React, Vite and Motion.',
     backToTop: 'Back to top',
   },
   id: {
-    metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer',
+    metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer di Depok, Indonesia',
     metaDescription:
       'Ridho Fauzi Grafika, fullstack web developer di Depok, Indonesia. Membangun sistem HR dan ERP Odoo dengan React, Laravel, Node.js, dan Go.',
     skipToContent: 'Langsung ke konten',
@@ -114,6 +119,11 @@ export const ui = {
     copyEmail: 'Salin email',
     copied: 'Tersalin',
     copiedStatus: 'Alamat email disalin ke clipboard',
+
+    notFoundTitle: 'Halaman tidak ditemukan',
+    notFoundBody: 'Halaman ini tidak ada atau sudah dipindahkan. Isi portofolio lainnya masih ada di sini.',
+    backHome: 'Kembali ke beranda',
+    notFoundWork: 'Atau langsung lihat project',
 
     builtWithFooter: 'Dibuat dengan React, Vite, dan Motion.',
     backToTop: 'Kembali ke atas',

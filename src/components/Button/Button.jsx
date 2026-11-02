@@ -11,7 +11,9 @@ export function Button({
   ...rest
 }) {
   const classes = [styles.button, styles[variant], styles[size], className].join(' ')
-  const iconClass = `${styles.icon} ${iconDirection === 'down' ? styles.iconDown : ''}`
+  // iconDirection: 'up-right' (external), 'down', 'left' or 'right' — sets the hover nudge
+  const nudge = { down: styles.iconDown, left: styles.iconLeft, right: styles.iconRight }[iconDirection] ?? ''
+  const iconClass = `${styles.icon} ${nudge}`
   const content = (
     <>
       <span className={styles.fill} aria-hidden="true" />

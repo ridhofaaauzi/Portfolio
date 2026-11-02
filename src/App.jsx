@@ -6,10 +6,19 @@ import { Experience } from './sections/Experience/Experience'
 import { Skills } from './sections/Skills/Skills'
 import { Contact } from './sections/Contact/Contact'
 import { CaseStudy } from './pages/CaseStudy/CaseStudy'
+import { NotFound } from './pages/NotFound/NotFound'
 import { useRoute } from './routes'
 
 export default function App() {
   const route = useRoute()
+
+  if (route.type === 'notFound') {
+    return (
+      <MainLayout>
+        <NotFound />
+      </MainLayout>
+    )
+  }
 
   if (route.type === 'project') {
     return (

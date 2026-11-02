@@ -83,7 +83,7 @@ export function ProjectCard({ project, variant = 'feature' }) {
           </dl>
 
           <div className={styles.links}>
-            <Button href={caseStudy} size="sm" icon={ArrowRight} className={styles.link}>
+            <Button href={caseStudy} size="sm" icon={ArrowRight} iconDirection="right" className={styles.link}>
               {t('readCaseStudy')}
               <span className="visually-hidden">: {title}</span>
             </Button>

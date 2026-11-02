@@ -9,3 +9,7 @@
 .char {
   display: inline-block;
 }
+
+.char::before {
+  content: attr(data-char);
+}

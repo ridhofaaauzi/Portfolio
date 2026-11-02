@@ -21,6 +21,11 @@ export const profile = {
   },
   location: { en: 'Depok, West Java', id: 'Depok, Jawa Barat' },
   email: 'ridhofauzi.grafikaa@gmail.com',
+  // Shown as a badge in the hero and contact section; set to null to hide it
+  openTo: {
+    en: 'Open to full-time & freelance work',
+    id: 'Terbuka untuk full-time & freelance',
+  },
   availability: {
     en: 'Have a project or a role in mind? Email is the fastest way to reach me.',
     id: 'Punya proyek atau posisi yang ingin dibicarakan? Email adalah cara tercepat menghubungi saya.',

@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { Button } from '../../components/Button/Button'
 import { SplitText } from '../../components/SplitText/SplitText'
+import { StatusBadge } from '../../components/StatusBadge/StatusBadge'
 import { useLanguage } from '../../i18n/language'
 import styles from './Hero.module.css'
 
@@ -66,6 +67,7 @@ export function HeroContent({ variant, animate, play = true }) {
       </m.p>
 
       <m.div className={styles.aside} data-tag="div.about" {...fadeUp(0.6)}>
+        <StatusBadge className={styles.status} />
         <p className={styles.role}>
           {profile.role}, {t('basedIn')} {l(profile.location)}
         </p>

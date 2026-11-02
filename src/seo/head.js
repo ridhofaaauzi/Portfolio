@@ -14,6 +14,9 @@ const jsonLd = (data) => JSON.stringify(data).replace(/</g, '\\u003c')
 
 // Title and description for a page; case studies use the project's own summary.
 export function pageMeta(lang, route) {
+  if (route.type === 'notFound') {
+    return { title: `${ui[lang].notFoundTitle} · ${profile.name}`, description: ui[lang].notFoundBody }
+  }
   if (route.type !== 'project') return { title: ui[lang].metaTitle, description: ui[lang].metaDescription }
   const project = projects.find((p) => p.id === route.id)
   return {
@@ -108,8 +111,18 @@ function structuredData(lang, route) {
 
 /** Everything SEO-related that goes in <head> for `route` in `lang`. */
 export function renderHead(lang, route) {
-  const url = absoluteUrl(pathFor(route, lang))
   const { project, title, description } = pageMeta(lang, route)
+
+  // The 404 page is served for any unknown URL, so it has no canonical address and stays out of the index
+  if (route.type === 'notFound') {
+    return [
+      `<title>${escapeAttr(title)}</title>`,
+      `<meta name="description" content="${escapeAttr(description)}" />`,
+      `<meta name="robots" content="noindex" />`,
+    ].join('\n    ')
+  }
+
+  const url = absoluteUrl(pathFor(route, lang))
   const image = absoluteUrl(site.ogImage.path)
   const alternates = site.languages.filter((l) => l.lang !== lang)
 

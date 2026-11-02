@@ -32,6 +32,12 @@
   text-transform: uppercase;
 }
 
+.status {
+  grid-column: 1 / -1;
+  /* Sit close to the availability line instead of a full row gap away */
+  margin-bottom: calc(var(--space-4) - var(--space-7));
+}
+
 .availability {
   grid-column: 1 / span 5;
   max-width: 40ch;

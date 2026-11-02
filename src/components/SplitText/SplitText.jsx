@@ -47,15 +47,16 @@ export function SplitText({
         <span key={lineIndex} className={`${styles.line} ${lineClassName}`} aria-hidden="true">
           {[...line].map((char) => {
             const i = index++
+            // The glyph is drawn by CSS (::before), so the heading's text content is
+            // just the label above, not the label followed by every animated letter.
             return (
               <m.span
                 key={i}
                 className={styles.char}
+                data-char={char === ' ' ? '\u00A0' : char}
                 variants={charVariants}
                 custom={{ delay: delay + i * step }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </m.span>
+              />
             )
           })}
         </span>

@@ -146,7 +146,14 @@ export function CaseStudy({ id }) {
             <ul className={styles.gallery}>
               {gallery.map((shot, i) => (
                 <li key={i}>
-                  <img src={shot.src} alt={l(shot.alt)} width="1600" height="1000" loading="lazy" decoding="async" />
+                  <img
+                    src={shot.src}
+                    alt={l(shot.alt)}
+                    width={shot.width ?? 1600}
+                    height={shot.height ?? 1000}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </li>
               ))}
             </ul>

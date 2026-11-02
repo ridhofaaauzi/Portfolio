@@ -90,6 +90,10 @@
   gap: var(--space-3);
 }
 
+.status {
+  margin-bottom: var(--space-2);
+}
+
 .role {
   font-weight: 600;
 }

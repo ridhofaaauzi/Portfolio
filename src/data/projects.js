@@ -1,6 +1,12 @@
 import sihris from '../assets/projects/sihris.webp'
 import berbagilink from '../assets/projects/berbagilink.webp'
 import mflashCover from '../assets/projects/mflash-cover.svg'
+import sihrisDashboard from '../assets/projects/sihris/dashboard.webp'
+import sihrisUsers from '../assets/projects/sihris/user-management.webp'
+import sihrisDevices from '../assets/projects/sihris/user-device-management.webp'
+import mflashAccounting from '../assets/projects/mflash/accounting-dashboard.webp'
+import mflashImport from '../assets/projects/mflash/import-template-center.webp'
+import mflashWebsite from '../assets/projects/mflash/customer-website.webp'
 
 // A real screenshot at src/assets/projects/mflash.(png|jpg|webp) replaces the illustration.
 const mflashShots = import.meta.glob('../assets/projects/mflash.{png,jpg,jpeg,webp}', {
@@ -18,7 +24,7 @@ const mflashShot = Object.values(mflashShots)[0]
 //   metrics     measurable results, shown as large numbers; hidden while empty. e.g.
 //               { value: '−80%', label: { en: 'Time Off page load time', id: 'Waktu muat halaman Time Off' } }
 //   gallery     extra screenshots; hidden while empty. e.g.
-//               { src: importedImage, alt: { en: '…', id: '…' } }
+//               { src: importedImage, width: 1600, height: 760, alt: { en: '…', id: '…' } }
 export const projects = [
   {
     id: 'sihris',
@@ -55,7 +61,35 @@ export const projects = [
       },
     ],
     metrics: [],
-    gallery: [],
+    gallery: [
+      {
+        src: sihrisDashboard,
+        width: 1600,
+        height: 760,
+        alt: {
+          en: 'SIHRIS dashboard with clock in and out, employee list, team members and shift schedule',
+          id: 'Dashboard SIHRIS dengan clock in/out, daftar karyawan, anggota tim, dan jadwal shift',
+        },
+      },
+      {
+        src: sihrisUsers,
+        width: 1600,
+        height: 754,
+        alt: {
+          en: 'User Management page listing users with role, status, years of service and permission count',
+          id: 'Halaman User Management berisi daftar pengguna dengan role, status, masa kerja, dan jumlah izin',
+        },
+      },
+      {
+        src: sihrisDevices,
+        width: 1600,
+        height: 744,
+        alt: {
+          en: 'User Device Management page showing active devices per user and a company-wide device limit',
+          id: 'Halaman User Device Management yang menampilkan perangkat aktif tiap pengguna dan batas perangkat perusahaan',
+        },
+      },
+    ],
     links: { demo: 'https://sihris.id/' },
   },
   {
@@ -92,7 +126,35 @@ export const projects = [
       },
     ],
     metrics: [],
-    gallery: [],
+    gallery: [
+      {
+        src: mflashAccounting,
+        width: 1600,
+        height: 751,
+        alt: {
+          en: 'MFLASH accounting dashboard in Odoo with sales, purchases, bank, QRIS and cash journals',
+          id: 'Dashboard akuntansi MFLASH di Odoo dengan jurnal penjualan, pembelian, bank, QRIS, dan kas',
+        },
+      },
+      {
+        src: mflashImport,
+        width: 1600,
+        height: 748,
+        alt: {
+          en: 'Import Template Center for importing suppliers, customers and account groups step by step',
+          id: 'Import Template Center untuk mengimpor supplier, customer, dan account group secara bertahap',
+        },
+      },
+      {
+        src: mflashWebsite,
+        width: 1600,
+        height: 758,
+        alt: {
+          en: 'MFlash customer website for phone and laptop repairs, with online repair status tracking',
+          id: 'Website pelanggan MFlash untuk perbaikan HP dan laptop, dengan pelacakan status repair online',
+        },
+      },
+    ],
     links: {},
   },
   {

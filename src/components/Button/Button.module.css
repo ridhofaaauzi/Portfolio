@@ -77,6 +77,14 @@
     transform: translateY(3px);
   }
 
+  .button:hover .iconLeft {
+    transform: translateX(-3px);
+  }
+
+  .button:hover .iconRight {
+    transform: translateX(3px);
+  }
+
   .primary:hover {
     color: var(--scene-accent-fg);
   }

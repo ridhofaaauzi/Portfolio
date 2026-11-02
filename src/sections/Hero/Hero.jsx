@@ -29,6 +29,7 @@ export function Hero() {
   const introDone = useIntroDone()
   const [ready, setReady] = useState(reduceMotion)
   const [inspecting, setInspecting] = useState(false)
+  const [inspected, setInspected] = useState(false)
 
   const pointerX = useMotionValue(0)
   const pointerY = useMotionValue(0)
@@ -82,6 +83,7 @@ export function Hero() {
     const next = !inspecting
 
     setReady(true)
+    setInspected(true)
 
     x.jump(cx)
     y.jump(cy)
@@ -117,9 +119,10 @@ export function Hero() {
     >
       <HeroContent variant="surface" animate={!reduceMotion} play={introDone} />
 
-      {/* Mounted after the entrance so first paint only lays out one copy of the hero */}
+      {/* Mounted after the entrance so first paint only lays out one copy of the hero.
+          Touch devices have no lens, so there it waits until the toggle is first used. */}
       <m.div className={styles.blueprint} style={{ clipPath }} aria-hidden="true" inert>
-        {ready && (
+        {ready && (canHover || inspected) && (
           <>
             <div className={styles.grid}>
               {Array.from({ length: 12 }, (_, i) => (

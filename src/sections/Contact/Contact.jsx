@@ -4,6 +4,7 @@ import { ArrowUpRight, Check, Copy } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { SplitText } from '../../components/SplitText/SplitText'
 import { useLanguage } from '../../i18n/language'
+import { StatusBadge } from '../../components/StatusBadge/StatusBadge'
 import styles from './Contact.module.css'
 
 export function Contact() {
@@ -52,6 +53,7 @@ export function Contact() {
         className={styles.title}
       />
 
+      <StatusBadge className={styles.status} />
       <p className={styles.availability}>{l(profile.availability)}</p>
 
       <div className={styles.emailRow}>

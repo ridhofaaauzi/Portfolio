@@ -11,7 +11,7 @@ const root = fileURLToPath(new URL('..', import.meta.url))
 const dist = path.join(root, 'dist')
 const serverDir = path.join(root, 'dist-server')
 
-const { render, renderHead, site, routes, pathFor } = await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)
+const { render, renderHead, site, routes, pathFor, notFound } = await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)
 
 const template = await readFile(path.join(dist, 'index.html'), 'utf8')
 
@@ -40,6 +40,16 @@ for (const route of routes) {
     await writeFile(out, html)
     console.log(`prerendered ${pagePath} → ${path.relative(root, out)}`)
   }
+}
+
+// Served by Vercel for any unknown URL; English, switching to Indonesian under /id/
+{
+  let html = template
+  html = replaceOnce(html, /<html lang="[^"]*">/, '<html lang="en">')
+  html = replaceOnce(html, /<!-- seo:start[\s\S]*?<!-- seo:end -->/, renderHead('en', notFound) + preload)
+  html = replaceOnce(html, /<div id="root"><\/div>/, `<div id="root">${render('en', notFound)}</div>`)
+  await writeFile(path.join(dist, '404.html'), html)
+  console.log('prerendered 404 → dist/404.html')
 }
 
 const url = (p) => new URL(p, site.url).href

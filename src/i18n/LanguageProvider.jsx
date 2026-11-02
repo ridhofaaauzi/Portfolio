@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { absoluteUrl } from '../data/site'
-import { pathFor, useRoute } from '../routes'
+import { parsePath, pathFor, useRoute } from '../routes'
 import { pageMeta } from '../seo/head'
 import { LanguageContext } from './language'
 
@@ -21,11 +21,12 @@ export function LanguageProvider({ initialLang = 'en', children }) {
   // On the default English URL, honour a saved or browser preference after hydration.
   useEffect(() => {
     if (initialLang !== 'en') return
-    const preferred = preferredLanguage()
+    // The 404 page follows the URL (/id/… → Indonesian); other pages the saved preference
+    const preferred = route.type === 'notFound' ? parsePath(window.location.pathname).lang : preferredLanguage()
     // Must run after hydration (localStorage isn't known to the prerendered HTML)
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (preferred !== initialLang) setLangState(preferred)
-  }, [initialLang])
+  }, [initialLang, route])
 
   const setLang = useCallback((next) => {
     localStorage.setItem(STORAGE_KEY, next)
@@ -35,13 +36,13 @@ export function LanguageProvider({ initialLang = 'en', children }) {
   useEffect(() => {
     const path = pathFor(route, lang)
     const { title, description } = pageMeta(lang, route)
-    if (window.location.pathname !== path) {
+    if (path && window.location.pathname !== path) {
       window.history.replaceState(null, '', path + window.location.hash)
     }
     document.documentElement.lang = lang
     document.title = title
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', absoluteUrl(path))
+    if (path) document.querySelector('link[rel="canonical"]')?.setAttribute('href', absoluteUrl(path))
   }, [lang, route])
 
   return <LanguageContext.Provider value={{ lang, setLang }}>{children}</LanguageContext.Provider>
