@@ -35,7 +35,7 @@ export const projects = [
     },
     year: { en: '2024 – Now', id: '2024 – Sekarang' },
     role: 'Fullstack Developer',
-    stack: ['React', 'Laravel', 'MySQL'],
+    stack: ['React', 'Shadcn UI', 'Laravel', 'MySQL', 'JWT'],
     image: sihris,
     imageAlt: {
       en: 'SIHRIS landing page with a preview of the HR dashboard',
@@ -166,7 +166,7 @@ export const projects = [
     },
     year: '2024 – 2025',
     role: { en: 'Fullstack Developer (intern)', id: 'Fullstack Developer (magang)' },
-    stack: ['React', 'Laravel', 'MySQL'],
+    stack: ['React', 'Laravel', 'MySQL', 'JWT'],
     image: berbagilink,
     imageAlt: {
       en: 'Berbagilink landing page with a mini-website demo',
