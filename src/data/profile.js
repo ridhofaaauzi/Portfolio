@@ -10,7 +10,7 @@ export const profile = {
   // How the name is set in the hero, one entry per line
   displayName: ['Ridho', 'Fauzi'],
   initials: 'RF',
-  role: 'Fullstack Developer',
+  role: 'Full Stack Developer',
   headline: {
     en: 'Building intuitive, functional, and reliable web applications, from the user interface to the systems behind them.',
     id: 'Membangun aplikasi web yang intuitif, fungsional, dan andal, dari antarmuka hingga sistem di baliknya.',

@@ -34,7 +34,7 @@ export const projects = [
       id: 'HRIS untuk absensi, shift kerja, cuti, lembur dan penggajian. Saya membangun manajemen pengguna dan perangkat dengan audit logging, serta mempercepat modul Time Off dan Overtime.',
     },
     year: { en: '2024 – Now', id: '2024 – Sekarang' },
-    role: 'Fullstack Developer',
+    role: 'Full Stack Developer',
     stack: ['React', 'Shadcn UI', 'Laravel', 'MySQL', 'JWT'],
     image: sihris,
     imageAlt: {
@@ -42,8 +42,8 @@ export const projects = [
       id: 'Halaman utama SIHRIS dengan pratinjau dashboard HR',
     },
     context: {
-      en: 'SIHRIS is an HR information system covering attendance, work shifts, time off, overtime and payroll. I joined it as an intern in 2024 and have kept working on it as a freelance fullstack developer.',
-      id: 'SIHRIS adalah sistem informasi HR yang mencakup absensi, shift kerja, cuti, lembur, dan penggajian. Saya mulai mengerjakannya saat magang pada 2024 dan berlanjut sebagai fullstack developer freelance.',
+      en: 'SIHRIS is an HR information system covering attendance, work shifts, time off, overtime and payroll. I joined it as an intern in 2024 and have kept working on it as a freelance full stack developer.',
+      id: 'SIHRIS adalah sistem informasi HR yang mencakup absensi, shift kerja, cuti, lembur, dan penggajian. Saya mulai mengerjakannya saat magang pada 2024 dan berlanjut sebagai full stack developer freelance.',
     },
     highlights: [
       {
@@ -100,7 +100,7 @@ export const projects = [
       id: 'ERP Odoo untuk jasa servis. Saya membangun persetujuan override teknisi, penetapan Sales PIC otomatis, pemetaan pembayaran ke COA, serta laporan Balance Sheet dan Laba Rugi yang fleksibel.',
     },
     year: { en: '2025 – Now', id: '2025 – Sekarang' },
-    role: 'Fullstack Developer',
+    role: 'Full Stack Developer',
     stack: ['Odoo', 'Python', 'PostgreSQL'],
     image: mflashShot ?? mflashCover,
     imageAlt: mflashShot
@@ -165,7 +165,7 @@ export const projects = [
       id: 'Platform mini-website satu tautan untuk toko, event dan donasi. Saya membangun REST API untuk mobile, afiliasi berbasis tautan, impor dan ekspor data, serta QR code unik per toko.',
     },
     year: '2024 – 2025',
-    role: { en: 'Fullstack Developer (intern)', id: 'Fullstack Developer (magang)' },
+    role: { en: 'Full Stack Developer (intern)', id: 'Full Stack Developer (magang)' },
     stack: ['React', 'Laravel', 'MySQL', 'JWT'],
     image: berbagilink,
     imageAlt: {
@@ -173,8 +173,8 @@ export const projects = [
       id: 'Halaman utama Berbagilink dengan demo mini-website',
     },
     context: {
-      en: 'Berbagilink lets stores, events and donation campaigns publish a mini-website behind a single link. I worked on it as a fullstack developer intern.',
-      id: 'Berbagilink memungkinkan toko, event, dan kampanye donasi memiliki mini-website di balik satu tautan. Saya mengerjakannya sebagai fullstack developer magang.',
+      en: 'Berbagilink lets stores, events and donation campaigns publish a mini-website behind a single link. I worked on it as a full stack developer intern.',
+      id: 'Berbagilink memungkinkan toko, event, dan kampanye donasi memiliki mini-website di balik satu tautan. Saya mengerjakannya sebagai full stack developer magang.',
     },
     highlights: [
       { en: 'REST API for the mobile app.', id: 'REST API untuk aplikasi mobile.' },

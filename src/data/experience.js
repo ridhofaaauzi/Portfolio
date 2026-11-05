@@ -3,7 +3,7 @@ export const experience = [
   {
     id: 'amanah-freelance',
     company: 'PT Amanah Karya Indonesia',
-    role: 'Fullstack Developer',
+    role: 'Full Stack Developer',
     type: { en: 'Freelance', id: 'Freelance' },
     period: { en: 'Sep 2025 – Present', id: 'Sep 2025 – Sekarang' },
     summary: {
@@ -14,7 +14,7 @@ export const experience = [
   {
     id: 'amanah-intern',
     company: 'PT Amanah Karya Indonesia',
-    role: 'Fullstack Developer',
+    role: 'Full Stack Developer',
     type: { en: 'Internship', id: 'Magang' },
     period: { en: 'Aug 2024 – Mar 2025', id: 'Agu 2024 – Mar 2025' },
     summary: {

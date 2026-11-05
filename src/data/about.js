@@ -1,7 +1,7 @@
 export const about = {
   statement: {
-    en: 'I’m a fullstack developer from Depok. I studied Informatics at STT Terpadu Nurul Fikri, graduating in 2025, and I now build features for an HR system and an ERP platform at PT Amanah Karya Indonesia.',
-    id: 'Saya fullstack developer dari Depok. Saya lulus dari Teknik Informatika STT Terpadu Nurul Fikri pada 2025, dan kini membangun fitur untuk sistem HR dan platform ERP di PT Amanah Karya Indonesia.',
+    en: 'I’m a full stack developer from Depok. I studied Informatics at STT Terpadu Nurul Fikri, graduating in 2025, and I now build features for an HR system and an ERP platform at PT Amanah Karya Indonesia.',
+    id: 'Saya full stack developer dari Depok. Saya lulus dari Teknik Informatika STT Terpadu Nurul Fikri pada 2025, dan kini membangun fitur untuk sistem HR dan platform ERP di PT Amanah Karya Indonesia.',
   },
   approach: [
     {
