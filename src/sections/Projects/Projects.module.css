@@ -5,23 +5,6 @@
   padding-block: var(--space-10) var(--space-9);
 }
 
-/* Blueprint grid across the whole section, fading out at the top and bottom edges */
-.projects::before {
-  --grid-line: color-mix(in srgb, var(--scene-accent) 12%, transparent);
-
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: center top;
-  mask-image: linear-gradient(transparent, var(--mask-stop-visible) 18%, var(--mask-stop-visible) 82%, transparent);
-  pointer-events: none;
-}
-
 .title {
   grid-column: 1 / span 7;
   font-size: var(--fs-display);

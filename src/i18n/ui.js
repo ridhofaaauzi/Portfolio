@@ -1,9 +1,9 @@
 // Interface strings. Content (projects, experience…) lives in src/data.
 export const ui = {
   en: {
-    metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer',
+    metaTitle: 'Ridho Fauzi Grafika — Fullstack Developer',
     metaDescription:
-      'Ridho Fauzi Grafika, fullstack web developer in Depok, Indonesia. Builds HR systems and Odoo ERP with React, Laravel, Node.js and Go.',
+      'Ridho Fauzi Grafika, fullstack developer in Depok, Indonesia. Builds HR systems and Odoo ERP with React, Laravel, Node.js and Go.',
     skipToContent: 'Skip to content',
     backToTopLabel: 'back to top',
     letsTalk: 'Let’s talk',
@@ -65,9 +65,9 @@ export const ui = {
     backToTop: 'Back to top',
   },
   id: {
-    metaTitle: 'Ridho Fauzi Grafika — Fullstack Web Developer di Depok, Indonesia',
+    metaTitle: 'Ridho Fauzi Grafika — Fullstack Developer di Depok, Indonesia',
     metaDescription:
-      'Ridho Fauzi Grafika, fullstack web developer di Depok, Indonesia. Membangun sistem HR dan ERP Odoo dengan React, Laravel, Node.js, dan Go.',
+      'Ridho Fauzi Grafika, fullstack developer di Depok, Indonesia. Membangun sistem HR dan ERP Odoo dengan React, Laravel, Node.js, dan Go.',
     skipToContent: 'Langsung ke konten',
     backToTopLabel: 'kembali ke atas',
     letsTalk: 'Hubungi saya',
