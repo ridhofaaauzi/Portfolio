@@ -1,6 +1,6 @@
 // Where the site is deployed. Used for canonical URLs, Open Graph, the sitemap and robots.txt.
 export const site = {
-  url: 'https://portfolio-svmx.vercel.app',
+  url: 'https://ridhofaauzi.com',
   // English is the default (x-default) at the root; Indonesian pages live under /id
   languages: [
     { lang: 'en', prefix: '', locale: 'en_US' },

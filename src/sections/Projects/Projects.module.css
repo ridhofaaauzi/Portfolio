@@ -5,8 +5,34 @@
   padding-block: var(--space-10) var(--space-9);
 }
 
-.title {
+.header {
   grid-column: 1 / span 7;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-code);
+  font-size: var(--fs-small);
+  color: var(--scene-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.labelIndex {
+  color: var(--c-blueprint);
+  font-weight: 600;
+}
+
+.labelDivider {
+  opacity: 0.35;
+}
+
+.title {
   font-size: var(--fs-display);
   font-stretch: 80%;
   line-height: 0.92;
@@ -16,23 +42,272 @@
   grid-column: 9 / -1;
   max-width: 36ch;
   color: var(--scene-muted);
+  align-self: end;
 }
 
-/* ---------- Project list: feature first, then two per row ---------- */
+/* ---------- Index: rows (default = stacked, every row self-contained) ---------- */
+
+.index {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  margin-top: var(--space-8);
+}
 
 .list {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-9) var(--gutter);
-  margin-top: var(--space-8);
   padding: 0;
   list-style: none;
+  border-top: var(--rule);
 }
 
-.featured {
-  grid-column: 1 / -1;
+.row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: var(--space-6);
+  border-bottom: var(--rule);
 }
+
+.rowMedia {
+  aspect-ratio: 16 / 10;
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  border: var(--rule);
+  border-radius: var(--radius-media);
+  background: var(--c-image-well);
+}
+
+.rowMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  color: var(--scene-muted);
+}
+
+.metaSep {
+  opacity: 0.35;
+}
+
+.rowTitle {
+  font-size: clamp(2.5rem, 9vw, 3.5rem);
+  font-weight: 650;
+  font-stretch: 80%;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  transition: font-stretch var(--dur-slow) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+.rowLink::after {
+  /* Stretches the case-study link over the whole row; buttons sit above it */
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.rowLink:focus-visible {
+  outline: none;
+}
+
+.row:has(.rowLink:focus-visible)::before {
+  content: '';
+  position: absolute;
+  inset: var(--space-2) calc(var(--space-3) * -1);
+  border: 2px solid var(--scene-accent);
+  border-radius: var(--radius-media);
+  pointer-events: none;
+}
+
+.summary {
+  max-width: 52ch;
+  color: var(--scene-muted);
+  line-height: 1.6;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  color: var(--scene-fg);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.action {
+  position: relative;
+  z-index: 1;
+}
+
+/* The stage only exists where there is a pointer to drive it */
+.stage {
+  display: none;
+}
+
+/* ---------- Stage + index (wide screens with hover) ---------- */
+
+@media (min-width: 1024px) and (hover: hover) {
+  .list {
+    grid-column: 1 / span 5;
+  }
+
+  .rowMedia {
+    display: none;
+  }
+
+  /* Tall rows give the scroll something to move through */
+  .row {
+    justify-content: center;
+    min-height: 62vh;
+    padding-block: var(--space-7);
+  }
+
+  .rowTitle {
+    font-size: clamp(2.75rem, 4.6vw, 4.5rem);
+  }
+
+  .row[data-active='false'] .rowTitle,
+  .row[data-active='false'] .summary {
+    color: color-mix(in srgb, var(--scene-muted) 72%, var(--scene-bg));
+  }
+
+  .row[data-active='true'] .rowTitle {
+    font-stretch: 100%;
+  }
+
+  .stage {
+    display: block;
+    grid-column: 7 / -1;
+    position: sticky;
+    top: max(calc(var(--nav-height) + var(--space-5)), calc(50vh - 20vw));
+    align-self: start;
+    margin-top: var(--space-7);
+  }
+
+  .window {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid color-mix(in srgb, var(--scene-fg) 14%, transparent);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--scene-bg);
+  }
+
+  .chrome {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    height: 36px;
+    padding: 0 var(--space-3);
+    background: color-mix(in srgb, var(--scene-fg) 3%, var(--scene-bg));
+    border-bottom: 1px solid color-mix(in srgb, var(--scene-fg) 10%, transparent);
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    color: var(--scene-muted);
+  }
+
+  .address {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--c-image-well);
+    overflow: hidden;
+  }
+
+  .media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    opacity: 0;
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+
+  .media img[data-active='true'] {
+    opacity: 1;
+  }
+
+  /* Structure layer: appears while the pointer is over the stage */
+  .blueprint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-4);
+    background: color-mix(in srgb, var(--c-ink) 62%, transparent);
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+
+  .stage:hover .blueprint {
+    opacity: 1;
+  }
+
+  .blueprintGrid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--c-blueprint-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--c-blueprint-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .callout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    max-width: 46ch;
+    padding: var(--space-3) var(--space-4);
+    background: var(--c-ink);
+    border: 1px solid var(--c-blueprint-line-strong);
+    border-radius: var(--radius-media);
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--c-paper);
+  }
+
+  .calloutPrefix {
+    color: var(--c-blueprint-line);
+    font-weight: 600;
+  }
+}
+
+/* ---------- Footer link ---------- */
 
 .more {
   grid-column: 1 / -1;
@@ -40,7 +315,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin-top: var(--space-8);
+  margin-top: var(--space-7);
   font-family: var(--font-display);
   font-size: var(--fs-h3);
   font-weight: 600;
@@ -54,6 +329,15 @@
   transition: transform var(--dur-base) var(--ease-out);
 }
 
+.more:focus-visible {
+  outline: 2px solid var(--scene-accent);
+  outline-offset: 4px;
+}
+
+.more:active {
+  transform: scale(0.98);
+}
+
 @media (hover: hover) {
   .more:hover {
     background-size: 100% 2px;
@@ -65,18 +349,13 @@
 }
 
 @media (max-width: 1023px) {
-  .title,
+  .header,
   .lead {
     grid-column: 1 / -1;
   }
 
   .lead {
     margin-top: var(--space-4);
-  }
-
-  .list {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--space-8);
   }
 }
 
@@ -85,7 +364,18 @@
     padding-block: var(--space-9) var(--space-8);
   }
 
-  .projects::before {
-    background-size: 28px 28px;
+  .index {
+    margin-top: var(--space-7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rowTitle,
+  .summary,
+  .media img,
+  .blueprint,
+  .more,
+  .more svg {
+    transition: none;
   }
 }

@@ -1,16 +1,15 @@
 .card {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 /* ---------- Preview: the screenshot framed as a browser window ---------- */
 
 .plate {
-  grid-column: 1 / -1;
-  aspect-ratio: 21 / 9;
+  width: 100%;
+  aspect-ratio: 16 / 10;
 }
 
 .window {
@@ -20,10 +19,10 @@
   display: flex;
   flex-direction: column;
   border: 1px solid color-mix(in srgb, var(--scene-fg) 14%, transparent);
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--scene-bg);
-  transition: border-color var(--dur-slow) var(--ease-out);
+  transition: border-color var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
 }
 
 .chrome {
@@ -32,12 +31,29 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  height: 32px;
+  height: 36px;
   padding: 0 var(--space-3);
+  background: color-mix(in srgb, var(--scene-fg) 3%, var(--scene-bg));
   border-bottom: 1px solid color-mix(in srgb, var(--scene-fg) 10%, transparent);
   font-family: var(--font-code);
   font-size: 0.75rem;
   color: var(--scene-muted);
+}
+
+.chromeLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.chromeIndex {
+  font-weight: 600;
+  color: var(--scene-fg);
+}
+
+.chromeSep {
+  opacity: 0.3;
 }
 
 .address {
@@ -50,15 +66,42 @@
   text-overflow: ellipsis;
 }
 
+.chromeRight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+}
+
+.chromeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--scene-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-graphite);
+  transition: background-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
 .chromeIcon {
   flex: none;
   transition: transform var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
 .media {
+  position: relative;
   flex: 1;
   min-height: 0;
   background: var(--c-image-well);
+  overflow: hidden;
 }
 
 .media img {
@@ -66,34 +109,129 @@
   height: 100%;
   object-fit: cover;
   object-position: top left;
-  transition: transform 1.2s var(--ease-out);
+  transition: transform 1.2s var(--ease-out), filter var(--dur-slow) var(--ease-out);
   transform-origin: top left;
 }
 
-/* ---------- Text ---------- */
+/* ---------- Blueprint Inspector Overlay (Surface / Structure) ---------- */
+
+.blueprintOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: color-mix(in srgb, #0b0e17 65%, transparent);
+  backdrop-filter: blur(2px);
+  transition: opacity var(--dur-slow) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4);
+  z-index: 1;
+}
+
+.blueprintGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--c-blueprint-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-blueprint-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.blueprintHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.blueprintTag code,
+.blueprintCoord code {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgb(35 64 208 / 0.35);
+  border: 1px solid var(--c-blueprint-line-strong);
+  border-radius: var(--radius-media);
+  font-family: var(--font-code);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--c-blueprint-line);
+}
+
+.blueprintCallout {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  max-width: 90%;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: rgb(15 17 24 / 0.92);
+  border: 1px solid var(--c-blueprint-line-strong);
+  border-radius: var(--radius-media);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.blueprintCalloutPrefix {
+  color: var(--c-blueprint-line);
+  font-weight: 600;
+  flex: none;
+}
+
+.blueprintCalloutText {
+  color: var(--c-paper);
+}
+
+/* ---------- Text Body Layout ---------- */
 
 .body {
-  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: subgrid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
   row-gap: var(--space-6);
 }
 
 .heading {
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 7;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  color: var(--scene-muted);
+}
+
+.kickerRole {
+  color: var(--scene-fg);
+  font-weight: 500;
+}
+
+.kickerSep {
+  opacity: 0.35;
 }
 
 .title {
   font-size: clamp(2rem, 3.6vw, 3.25rem);
   font-weight: 650;
-  font-stretch: 78%;
+  font-stretch: 80%;
   line-height: 0.95;
   letter-spacing: -0.025em;
-  transition: font-stretch var(--dur-slow) var(--ease-out);
+  transition: font-stretch var(--dur-slow) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
 .titleLink::after {
-  /* Extends the click target to the plate as well */
+  /* Extends the primary click target across the card plate */
   content: '';
   position: absolute;
   inset: 0;
@@ -120,33 +258,22 @@
   grid-column: 8 / -1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--space-5);
 }
 
-.meta {
-  font-size: var(--fs-small);
+.stackSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.meta > div {
-  display: grid;
-  grid-template-columns: 7.5rem 1fr;
-  gap: var(--space-4);
-  align-items: baseline;
-  padding: var(--space-3) 0;
-  border-top: var(--rule);
-}
-
-.meta > div:last-child {
-  border-bottom: var(--rule);
-}
-
-.meta dt {
+.stackLabel {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--scene-muted);
-}
-
-.meta dd {
-  margin: 0;
-  font-weight: 500;
 }
 
 .stack {
@@ -158,11 +285,14 @@
 }
 
 .stack li {
-  padding: 2px var(--space-3);
+  padding: 3px var(--space-3);
   border: 1px solid var(--scene-rule);
   border-radius: var(--radius-pill);
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--scene-fg);
+  background: color-mix(in srgb, var(--scene-fg) 2%, transparent);
   transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
@@ -173,19 +303,33 @@
 }
 
 .link {
-  /* Sits above the stretched title link */
+  /* Positions above the stretched titleLink overlay */
   z-index: 1;
 }
 
-/* ---------- Interaction ---------- */
+/* ---------- Hover & Focus Interactions ---------- */
 
 @media (hover: hover) {
   .card:hover .window {
-    border-color: color-mix(in srgb, var(--scene-accent) 55%, transparent);
+    border-color: color-mix(in srgb, var(--scene-accent) 45%, transparent);
+    box-shadow: 0 12px 32px -8px color-mix(in srgb, var(--scene-fg) 8%, transparent);
   }
 
   .card:hover .media img {
-    transform: scale(1.025);
+    transform: scale(1.02);
+  }
+
+  .card:hover .blueprintOverlay {
+    opacity: 1;
+  }
+
+  .card:hover .pulseDot {
+    background: var(--c-blueprint);
+    box-shadow: 0 0 8px var(--c-blueprint);
+  }
+
+  .card:hover .chromeTag {
+    color: var(--c-blueprint);
   }
 
   .card:hover .chromeIcon {
@@ -194,33 +338,52 @@
   }
 
   .card:hover .title {
-    font-stretch: 100%;
+    font-stretch: 95%;
   }
 
   .card:hover .stack li {
-    border-color: color-mix(in srgb, var(--scene-accent) 45%, var(--scene-rule));
+    border-color: color-mix(in srgb, var(--scene-accent) 40%, var(--scene-rule));
   }
 }
 
-/* ---------- Compact: half-width cards, text stacked under the preview ---------- */
+/* Keyboard focus also triggers blueprint state */
+.card:focus-within .blueprintOverlay {
+  opacity: 1;
+}
+
+/* ---------- Compact Variant (Asymmetric Grid Items) ---------- */
 
 .card[data-variant='compact'] .plate {
   aspect-ratio: 16 / 10;
 }
 
+.card[data-variant='compact'] .body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
 .card[data-variant='compact'] .heading,
 .card[data-variant='compact'] .aside {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 .card[data-variant='compact'] .title {
-  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
 }
 
+/* ---------- Responsive Breakpoints ---------- */
+
 @media (max-width: 1023px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
   .heading,
   .aside {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 }
 
@@ -229,7 +392,20 @@
     aspect-ratio: 4 / 3;
   }
 
-  .meta > div {
-    grid-template-columns: 6.5rem 1fr;
+  .blueprintOverlay {
+    padding: var(--space-3);
+  }
+
+  .blueprintCallout {
+    display: none; /* Hide dense overlay text on tiny mobile screens to avoid clutter */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media img,
+  .blueprintOverlay,
+  .pulseDot,
+  .title {
+    transition: none;
   }
 }
