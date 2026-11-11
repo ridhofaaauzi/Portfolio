@@ -1,7 +1,9 @@
 import { m, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Lock } from 'lucide-react'
+import { profile } from '../../data/profile'
 import { projects } from '../../data/projects'
 import { Button } from '../../components/Button/Button'
+import { EmailButton } from '../../components/EmailButton/EmailButton'
 import { SplitText } from '../../components/SplitText/SplitText'
 import { useLanguage } from '../../i18n/language'
 import { useIntroDone } from '../../intro/intro'
@@ -168,6 +170,25 @@ export function CaseStudy({ id }) {
             </Button>
           </div>
         )}
+
+        <section className={styles.block} aria-labelledby="work-together-title">
+          <h2 id="work-together-title" className={styles.blockTitle}>
+            {t('workTogetherTitle')}
+          </h2>
+          <div className={styles.contact}>
+            <p className={styles.text}>{l(profile.availability)}</p>
+            <div className={styles.contactLinks}>
+              <EmailButton />
+              {profile.resume && (
+                <a href={l(profile.resume)} className={styles.resume} target="_blank" rel="noreferrer">
+                  {t('resume')}
+                  <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                  <span className="visually-hidden"> {t('newTab')}</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
 
         {next.id !== id && (
           <a href={pathFor({ type: 'project', id: next.id }, lang)} className={styles.next}>

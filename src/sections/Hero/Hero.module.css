@@ -113,6 +113,46 @@
   align-self: start;
 }
 
+/* Quiet text link beside the buttons: CV is a secondary path, not a third button */
+.resume {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding-inline: var(--space-2);
+  font-weight: 550;
+  color: var(--scene-fg);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--dur-base) var(--ease-out);
+}
+
+.resume svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.resume:active {
+  color: var(--scene-accent);
+}
+
+@media (hover: hover) {
+  .resume:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .resume:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume,
+  .resume svg {
+    transition: none;
+  }
+}
+
 /* ---------- Blueprint layer ---------- */
 
 .blueprint {
@@ -210,6 +250,10 @@
   background: transparent;
   color: var(--c-blueprint-line);
   border: 1px dashed var(--c-blueprint-line);
+}
+
+.content[data-variant='blueprint'] .ctas .resume {
+  border: none;
 }
 
 /* ---------- Inspect toggle ---------- */

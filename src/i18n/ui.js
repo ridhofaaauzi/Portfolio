@@ -19,6 +19,7 @@ export const ui = {
     basedIn: 'based in',
     seeWork: 'See selected work',
     emailMe: 'Email me',
+    emailCopied: 'Email copied',
     portraitOf: 'Portrait of',
     portraitPlaceholder: 'Portrait placeholder',
     showStructure: 'Show the structure',
@@ -43,6 +44,7 @@ export const ui = {
     resultsTitle: 'Results',
     galleryTitle: 'Screens',
     nextProject: 'Next project',
+    workTogetherTitle: 'Work together',
 
     aboutTitle: 'About',
     experienceTitle: 'Experience',
@@ -83,6 +85,7 @@ export const ui = {
     basedIn: 'berbasis di',
     seeWork: 'Lihat karya pilihan',
     emailMe: 'Kirim email',
+    emailCopied: 'Email tersalin',
     portraitOf: 'Foto',
     portraitPlaceholder: 'Tempat foto',
     showStructure: 'Tampilkan struktur',
@@ -107,6 +110,7 @@ export const ui = {
     resultsTitle: 'Hasil',
     galleryTitle: 'Tampilan',
     nextProject: 'Project berikutnya',
+    workTogetherTitle: 'Kerja sama',
 
     aboutTitle: 'Tentang',
     experienceTitle: 'Pengalaman',

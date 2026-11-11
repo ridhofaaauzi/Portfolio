@@ -114,7 +114,7 @@ export function Navbar() {
 
         <div className={styles.actions}>
           <LanguageSwitch lang={lang} setLang={setLang} label={t('language')} className={styles.langDesktop} />
-          <Button href="#contact" size="sm" className={styles.cta}>
+          <Button href={homeHref('contact', lang)} size="sm" className={styles.cta}>
             {t('letsTalk')}
           </Button>
           <button

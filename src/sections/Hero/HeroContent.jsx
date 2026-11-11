@@ -2,6 +2,7 @@ import { m } from 'motion/react'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { Button } from '../../components/Button/Button'
+import { EmailButton } from '../../components/EmailButton/EmailButton'
 import { SplitText } from '../../components/SplitText/SplitText'
 import { StatusBadge } from '../../components/StatusBadge/StatusBadge'
 import { useLanguage } from '../../i18n/language'
@@ -80,9 +81,19 @@ export function HeroContent({ variant, animate, play = true }) {
         <Button href="#work" icon={ArrowDown} iconDirection="down">
           {t('seeWork')}
         </Button>
-        <Button href={`mailto:${profile.email}`} variant="secondary" icon={ArrowUpRight}>
-          {t('emailMe')}
-        </Button>
+        <EmailButton />
+        {profile.resume && (
+          <a
+            href={l(profile.resume)}
+            className={styles.resume}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('resume')}
+            <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+            <span className="visually-hidden"> {t('newTab')}</span>
+          </a>
+        )}
       </m.div>
     </div>
   )

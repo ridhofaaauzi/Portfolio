@@ -4,6 +4,7 @@ import { ArrowUpRight, Check, Copy } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { SplitText } from '../../components/SplitText/SplitText'
 import { useLanguage } from '../../i18n/language'
+import { copyText } from '../../utils/copyText'
 import { StatusBadge } from '../../components/StatusBadge/StatusBadge'
 import styles from './Contact.module.css'
 
@@ -19,12 +20,8 @@ export function Contact() {
   }, [copied])
 
   const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(profile.email)
-      setCopied(true)
-    } catch {
-      window.location.href = `mailto:${profile.email}`
-    }
+    if (await copyText(profile.email)) setCopied(true)
+    else window.location.href = `mailto:${profile.email}`
   }
 
   const iconMotion = reduceMotion
